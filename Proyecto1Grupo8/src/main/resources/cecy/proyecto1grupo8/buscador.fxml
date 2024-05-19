@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cecy.proyecto1grupo8.BuscadorController">
+   <children>
+      <Label layoutX="35.0" layoutY="33.0" text="Selecciona las características que buscas" textFill="#b74113">
+         <font>
+            <Font name="System Bold Italic" size="26.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cbMarca" layoutX="126.0" layoutY="88.0" prefHeight="25.0" prefWidth="98.0" promptText="Marca" style="-fx-border-color: #b74113; -fx-background-color: #ffffff;" />
+      <RadioButton fx:id="rbNuevo" layoutX="35.0" layoutY="92.0" mnemonicParsing="false" text="Nuevo" textFill="#b74113">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="rbUsado" layoutX="35.0" layoutY="121.0" mnemonicParsing="false" text="Usado" textFill="#b74113">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </RadioButton>
+      <ComboBox fx:id="cbColor" layoutX="355.0" layoutY="87.0" prefHeight="25.0" prefWidth="98.0" promptText="Color" style="-fx-border-color: #b74113; -fx-background-color: #ffffff;" />
+      <ComboBox fx:id="cbModelo" layoutX="243.0" layoutY="87.0" prefHeight="25.0" prefWidth="98.0" promptText="Modelo" style="-fx-border-color: #b74113; -fx-background-color: #ffffff;" />
+      <Label layoutX="126.0" layoutY="145.0" text="Año:" textFill="#b74113">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="147.0" layoutY="186.0" prefHeight="27.0" prefWidth="57.0" text="Desde:" textFill="#faa632">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="355.0" layoutY="186.0" prefHeight="27.0" prefWidth="57.0" text="Hasta:" textFill="#faa632">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="126.0" layoutY="225.0" text="Precio:" textFill="#b74113">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="146.0" layoutY="257.0" prefHeight="27.0" prefWidth="57.0" text="Desde:" textFill="#faa632">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="355.0" layoutY="257.0" prefHeight="27.0" prefWidth="57.0" text="Hasta:" textFill="#faa632">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cbPrecio1" layoutX="204.0" layoutY="257.0" prefHeight="27.0" prefWidth="108.0" promptText="Seleccione" style="-fx-border-color: #b74113; -fx-background-color: #ffffff;" />
+      <ComboBox fx:id="cbPrecio2" layoutX="414.0" layoutY="257.0" prefHeight="27.0" prefWidth="108.0" promptText="Seleccione" style="-fx-border-color: #b74113; -fx-background-color: #ffffff;" />
+      <ComboBox fx:id="cbAnio1" layoutX="204.0" layoutY="187.0" prefHeight="27.0" prefWidth="108.0" promptText="Seleccione" style="-fx-border-color: #b74113; -fx-background-color: #ffffff;" />
+      <ComboBox fx:id="cbAnio2" layoutX="414.0" layoutY="187.0" prefHeight="27.0" prefWidth="108.0" promptText="Seleccione" style="-fx-border-color: #b74113; -fx-background-color: #ffffff;" />
+      <Button fx:id="btnBuscar" layoutX="416.0" layoutY="321.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="123.0" style="-fx-background-color: #ffffff; -fx-border-color: #b74113;" text="Buscar" textFill="#faa632">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnRegresar" layoutX="35.0" layoutY="321.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="123.0" style="-fx-background-color: #ffffff; -fx-border-color: #b74113;" text="Regresar" textFill="#faa632">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
