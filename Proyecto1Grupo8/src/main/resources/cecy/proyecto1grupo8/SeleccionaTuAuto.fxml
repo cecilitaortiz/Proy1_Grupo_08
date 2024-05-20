@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.pruebafx.SeleccionaTuAutoController">
+   <children>
+      <ScrollPane layoutX="10.0" layoutY="35.0" pannable="true" prefHeight="300.0" prefWidth="580.0">
+        <content>
+          <AnchorPane maxHeight="300.0" minHeight="0.0" minWidth="0.0">
+               <children>
+                  <HBox fx:id="hb" fillHeight="false" spacing="20.0" style="-fx-background-color: white; -fx-border-color: #b74113;" />
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <Button fx:id="btnmostrar" layoutX="429.0" layoutY="344.0" mnemonicParsing="false" onAction="#mostrar" style="-fx-background-color: #ffffff; -fx-border-color: #b74113;" text="Ver Descipcion" textFill="#faa632">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnatras" layoutX="10.0" layoutY="344.0" mnemonicParsing="false" onAction="#atras" prefHeight="42.0" prefWidth="123.0" style="-fx-background-color: #ffffff; -fx-border-color: #b74113;" text="Regresar" textFill="#faa632">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Button>
+      <Label layoutX="10.0" layoutY="6.0" text="Selecciona un auto:" textFill="#b74113">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblnoseleccionado" layoutX="408.0" layoutY="10.0" textFill="#b74113">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
