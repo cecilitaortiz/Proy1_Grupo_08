@@ -107,7 +107,4 @@ public class Auto {
     public String toString() {
         return "Auto{" + "tipo=" + tipo + ", marca=" + marca + ", modelo=" + modelo + ", color=" + color + ", kilometraje=" + kilometraje + ", precio=" + precio + ", anio=" + anio + ", imagen=" + imagen + ", descripcion=" + descripcion + '}';
     }
-    
-    
-    
 }
