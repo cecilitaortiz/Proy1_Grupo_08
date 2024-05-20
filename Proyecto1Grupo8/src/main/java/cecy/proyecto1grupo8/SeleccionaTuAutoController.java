@@ -45,7 +45,7 @@ public class SeleccionaTuAutoController implements Initializable {
     @FXML
     private HBox hb;
     private Auto auto1;
-    public static String pathImg="src/main/resources/images/"
+    public static String pathImg="src/main/resources/images/";
     public static String pathImagenes="src/main/resources/imagenes/";
     public static String pathArchivos="src/main/resources/archivos/";
     public static String pathDescripciones="src/main/resources/descripciones/";
