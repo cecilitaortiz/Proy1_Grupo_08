@@ -102,9 +102,8 @@ public class SeleccionaTuAutoController implements Initializable {
         if (auto1 == null || auto1.getPrecio() == 0) {
             lblnoseleccionado.setText("Debes Seleccionar un auto.");
         } else {
+            lblnoseleccionado.setText("");
             AnchorPane ap = new AnchorPane();
-            ap.setPrefWidth(600);
-            ap.setPrefHeight(400);
             StringBuilder contenido = new StringBuilder();
 
             try (BufferedReader br = new BufferedReader(new FileReader(pathDescripciones+auto1.getDescripcion()))) {
@@ -119,7 +118,6 @@ public class SeleccionaTuAutoController implements Initializable {
             
             Label label = new Label(contenido.toString());
             label.setPrefWidth(600);
-            label.setPrefHeight(400);
             label.setAlignment(Pos.TOP_LEFT);
             label.setLayoutX(10);
             label.setLayoutY(10);
@@ -139,7 +137,7 @@ public class SeleccionaTuAutoController implements Initializable {
         VBox vb = new VBox();
         vb.prefWidth(150);
         vb.prefHeight(300);
-        vb.setSpacing(20);
+        vb.setSpacing(15);
 
         for (int i = 0; i < ar.size(); i++) {
             if (vb.getChildren().size() < 2) { 
@@ -149,7 +147,7 @@ public class SeleccionaTuAutoController implements Initializable {
                 vb = new VBox(); 
                 vb.prefWidth(150);
                 vb.prefHeight(300);
-                vb.setSpacing(20);
+                vb.setSpacing(15);
                 LlenarVbox(vb, ar.get(i)); 
             }
         }
@@ -175,7 +173,7 @@ public class SeleccionaTuAutoController implements Initializable {
         iv.setSmooth(true);
         iv.setCache(true);
         iv.setPickOnBounds(true);
-        iv.setPreserveRatio(true);
+        iv.setPreserveRatio(false);
 
         
 

@@ -7,13 +7,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cecy.proyecto1grupo8.SeleccionaTuAutoController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cecy.proyecto1grupo8.SeleccionaTuAutoController">
    <children>
-      <ScrollPane layoutX="10.0" layoutY="35.0" pannable="true" prefHeight="300.0" prefWidth="580.0">
+      <ScrollPane layoutX="10.0" layoutY="35.0" pannable="true" prefHeight="300.0" prefWidth="580.0" style="-fx-background-color: white;">
         <content>
           <AnchorPane maxHeight="300.0" minHeight="0.0" minWidth="0.0">
                <children>
-                  <HBox fx:id="hb" fillHeight="false" spacing="20.0" style="-fx-background-color: white; -fx-border-color: #b74113;" />
+                  <HBox fx:id="hb" fillHeight="false" spacing="20.0" style="-fx-background-color: white;" />
                </children>
             </AnchorPane>
         </content>
