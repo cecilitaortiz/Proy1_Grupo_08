@@ -39,7 +39,7 @@ public class BuscadorController implements Initializable {
     @FXML
     private ComboBox<String> cbColor;
     @FXML
-    private ComboBox<String> cbTipo;
+    private ComboBox<String> cbModelo;
     @FXML
     private ComboBox<String> cbPrecio1;
     @FXML
@@ -60,7 +60,7 @@ public class BuscadorController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 
-        cargarItems(cbMarca, cbColor, cbPrecio1, cbPrecio2, cbAnio1, cbAnio2, cbTipo);
+        cargarItems(cbMarca, cbColor, cbPrecio1, cbPrecio2, cbAnio1, cbAnio2, cbModelo);
 
         btnRegresar.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -114,7 +114,7 @@ public class BuscadorController implements Initializable {
         cb4.getItems().addAll(itemsPrecio2);
         cb5.getItems().addAll(itemsAnio1);
         cb6.getItems().addAll(itemsAnio2);
-        //cb7.getItems().addAll(itemsTipo);
+        cb7.getItems().addAll(itemsTipo);
     }
 
     public List<String> getMarcas(ArrayList<Auto> list) {
@@ -138,6 +138,7 @@ public class BuscadorController implements Initializable {
         for (Auto auto : list) {
             tipos.add(auto.getTipo());
         }
+        System.out.print(tipos);
         return new ArrayList<>(tipos);
     }
 
@@ -157,4 +158,5 @@ public class BuscadorController implements Initializable {
     }
     
 
+    
 }
