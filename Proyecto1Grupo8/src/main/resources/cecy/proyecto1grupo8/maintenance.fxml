@@ -34,7 +34,7 @@
             <Font name="System Bold" size="19.0" />
          </font>
       </Button>
-      <TableView fx:id="tblCar" layoutX="14.0" layoutY="51.0" prefHeight="280.0" prefWidth="572.0">
+      <TableView fx:id="tblCar" layoutX="14.0" layoutY="51.0" prefHeight="280.0" prefWidth="572.0" style="-fx-border-color: #b74113; -fx-background-color: #fffffffff;">
         <columns>
           <TableColumn id="type" fx:id="idCar" prefWidth="115.0" text="Tipo" />
           <TableColumn id="brand" fx:id="idBrand" prefWidth="161.0" text="Marca" />

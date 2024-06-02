@@ -4,8 +4,12 @@
  */
 package cecy.proyecto1grupo8;
 
+import cecy.proyecto1grupo8.App;
+import java.io.IOException;
 import java.net.URL;
+import java.util.HashSet;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
@@ -44,6 +48,52 @@ public class MaintenanceController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+        this.SetButtons();
+        this.LoadCar();    
+        
     }    
+    
+    void SetButtons(){
+           btnBack.setOnAction(e -> {
+            try {
+                App.setRoot("principal");
+            } catch (IOException ex) {
+                //ex.printStackTrace();
+            }
+        });
+        
+        btnAdd.setOnAction(e -> {
+            try {
+                App.setRoot("car");
+            } catch (IOException ex) {
+                //ex.printStackTrace();
+            }
+        });
+        
+        btnEdit.setOnAction(e -> {
+            try {
+                App.setRoot("car");
+            } catch (IOException ex) {
+                //ex.printStackTrace();
+            }
+        });
+        
+        btnDelete.setOnAction(e -> {
+            try {
+                App.setRoot("car");
+            } catch (IOException ex) {
+                //ex.printStackTrace();
+            }
+        });
+   
+    }
+    
+    void LoadCar(){
+        try {
+            
+        } catch (Exception e) {
+        }
+    }
     
 }

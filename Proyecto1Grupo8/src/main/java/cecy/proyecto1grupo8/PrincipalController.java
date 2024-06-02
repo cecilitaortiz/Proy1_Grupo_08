@@ -51,6 +51,15 @@ public class PrincipalController implements Initializable {
                 }
             }
         });
+        
+        buttonRegitros.setOnAction(e -> {
+            try {
+                App.setRoot("maintenance");
+            } catch (IOException ex) {
+                //ex.printStackTrace();
+            }
+        });
+        
     }    
     public void cargarImagenes(){
         try{
