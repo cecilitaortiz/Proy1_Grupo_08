@@ -19,7 +19,7 @@ public class Auto {
     private String imagen;
     private String descripcion;
 
-    public Auto(String tipo, String marca, String modelo, String color, Integer kilometraje, double precio, int anio, String imagen, String descripcion) {
+    public Auto(String tipo, String marca, String modelo, String color, Integer kilometraje, double precio, Integer anio, String imagen, String descripcion) {
         this.tipo = tipo;
         this.marca = marca;
         this.modelo = modelo;
