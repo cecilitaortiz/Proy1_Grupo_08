@@ -6,7 +6,11 @@ package cecy.proyecto1grupo8;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,7 +39,7 @@ public class BuscadorController implements Initializable {
     @FXML
     private ComboBox<String> cbColor;
     @FXML
-    private ComboBox<String> cbModelo;
+    private ComboBox<String> cbTipo;
     @FXML
     private ComboBox<String> cbPrecio1;
     @FXML
@@ -56,8 +60,8 @@ public class BuscadorController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 
-        cargarItems(cbMarca, cbColor, cbPrecio1, cbPrecio2, cbAnio1, cbAnio2);
-        
+        cargarItems(cbMarca, cbColor, cbPrecio1, cbPrecio2, cbAnio1, cbAnio2, cbTipo);
+
         btnRegresar.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
@@ -79,6 +83,7 @@ public class BuscadorController implements Initializable {
         final ToggleGroup group = new ToggleGroup();
         rbNuevo.setToggleGroup(group);
         rbUsado.setToggleGroup(group);
+
     }
 
     public void cargarItems(
@@ -87,15 +92,21 @@ public class BuscadorController implements Initializable {
             ComboBox<String> cb3,
             ComboBox<String> cb4,
             ComboBox<String> cb5,
-            ComboBox<String> cb6
+            ComboBox<String> cb6,
+            ComboBox<String> cb7
     ) {
-        ObservableList<String> itemsMarca = FXCollections.observableArrayList("Chevrolet", "Nissan", "Ford");
-        // ObservableList<String> itemsModelo = FXCollections.observableArrayList("Chevrolet", "Nissan", "Ford");
-        ObservableList<String> itemsColor = FXCollections.observableArrayList("Blanco", "Negro", "Rojo");
-        ObservableList<String> itemsPrecio1 = FXCollections.observableArrayList("$1000", "$5000", "$10000", "$15000");
-        ObservableList<String> itemsPrecio2 = FXCollections.observableArrayList("$5000", "$10000", "$15000", "$20000");
-        ObservableList<String> itemsAnio1 = FXCollections.observableArrayList("2000", "2010", "2020", "2024");
-        ObservableList<String> itemsAnio2 = FXCollections.observableArrayList("2000", "2010", "2020", "2024");
+
+        ArrayList<Auto> autos;
+        autos = Fichero.cargarAutos();
+
+        ObservableList<String> itemsMarca = FXCollections.observableArrayList(getMarcas(autos));
+        //falta agregar los elementos en la caja tipo
+        ObservableList<String> itemsTipo = FXCollections.observableArrayList(getTipo(autos));
+        ObservableList<String> itemsColor = FXCollections.observableArrayList(getColores(autos));
+        ObservableList<String> itemsPrecio1 = FXCollections.observableArrayList(getPrecio(autos));
+        ObservableList<String> itemsPrecio2 = FXCollections.observableArrayList(getPrecio(autos));
+        ObservableList<String> itemsAnio1 = FXCollections.observableArrayList(getAnio(autos));
+        ObservableList<String> itemsAnio2 = FXCollections.observableArrayList(getAnio(autos));
 
         cb1.getItems().addAll(itemsMarca);
         cb2.getItems().addAll(itemsColor);
@@ -103,7 +114,47 @@ public class BuscadorController implements Initializable {
         cb4.getItems().addAll(itemsPrecio2);
         cb5.getItems().addAll(itemsAnio1);
         cb6.getItems().addAll(itemsAnio2);
-
+        //cb7.getItems().addAll(itemsTipo);
     }
+
+    public List<String> getMarcas(ArrayList<Auto> list) {
+        Set<String> marcas = new HashSet<>();
+        for (Auto auto : list) {
+            marcas.add(auto.getMarca());
+        }
+        return new ArrayList<>(marcas);
+    }
+
+    public List<String> getColores(ArrayList<Auto> list) {
+        Set<String> col = new HashSet<>();
+        for (Auto auto : list) {
+            col.add(auto.getColor());
+        }
+        return new ArrayList<>(col);
+    }
+
+    public List<String> getTipo(ArrayList<Auto> list) {
+        Set<String> tipos = new HashSet<>();
+        for (Auto auto : list) {
+            tipos.add(auto.getTipo());
+        }
+        return new ArrayList<>(tipos);
+    }
+
+    public List<String> getAnio(ArrayList<Auto> list) {
+        Set<String> anios = new HashSet<>();
+        for (Auto auto : list) {
+            anios.add(auto.getAnio().toString());
+        }
+        return new ArrayList<>(anios);
+    }
+    public List<String> getPrecio(ArrayList<Auto> list) {
+        Set<String> precios = new HashSet<>();
+        for (Auto auto : list) {
+            precios.add(String.valueOf(auto.getPrecio()));
+        }
+        return new ArrayList<>(precios);
+    }
+    
 
 }
