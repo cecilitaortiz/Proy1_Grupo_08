@@ -1,0 +1,6 @@
+idColor,description,status
+00,Color,1
+01,Rojo,1
+02,Amarillo,1
+03,Azul,1
+04,Negro,1

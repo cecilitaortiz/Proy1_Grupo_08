@@ -1,0 +1,5 @@
+idBrand,desctiption,status
+00,Marca,1
+01,Chevrolet,1
+02,Nissan,1
+03,Toyota,1

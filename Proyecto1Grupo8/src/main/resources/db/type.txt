@@ -1,0 +1,5 @@
+idType,description,status
+00,Tipo,1
+01,Auto,1
+02,Límosina,1
+03,Camión,1

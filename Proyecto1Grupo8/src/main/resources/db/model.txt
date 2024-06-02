@@ -1,0 +1,10 @@
+idmodel,idBrand,description,status
+00,00,Modelo,1
+01,01,Aveo,1
+02,01,Camaro,1
+03,01,Joy,1
+04,01,Spark,1
+05,02,Versa,1
+06,02,Kicks,1
+07,02,Frontier,1
+08,02,Qashqai,1

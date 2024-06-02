@@ -1,0 +1,4 @@
+idCarDescription,description,status
+00|Description|1
+01|Te presentamos el Chevrolet Spark, un vehículo fiable y eficiente del año 2012. Con un kilometraje de 205.000 kms, este coche ha demostrado su durabilidad a lo largo de los años. Con un precio de 6.300 USD, ofrece una gran relación calidad-precio. Aún no se ha especificado su color. Con un límite máximo de 300 caracteres, te invitamos a experimentar la funcionalidad y asequibilidad del Chevrolet Spark.|1
+02|Prueba de descripcion|1
