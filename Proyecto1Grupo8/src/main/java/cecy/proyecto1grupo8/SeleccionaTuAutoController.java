@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -45,12 +46,10 @@ public class SeleccionaTuAutoController implements Initializable {
     @FXML
     private HBox hb;
     private Auto auto1;
-    public static String pathImg="src/main/resources/images/";
-    public static String pathImagenes="src/main/resources/imagenes/";
-    public static String pathArchivos="src/main/resources/archivos/";
-    public static String pathDescripciones="src/main/resources/descripciones/";
-    
-
+    public static String pathImg = "src/main/resources/images/";
+    public static String pathImagenes = "src/main/resources/imagenes/";
+    public static String pathArchivos = "src/main/resources/archivos/";
+    public static String pathDescripciones = "src/main/resources/descripciones/";
 
     /**
      * Initializes the controller class.
@@ -61,23 +60,25 @@ public class SeleccionaTuAutoController implements Initializable {
             LlenarDatos(crearArrayList());
         } catch (FileNotFoundException ex) {
         }
-        
-    }    
+
+    }
 
     @FXML
     private void atras(ActionEvent event) {
-        Stage stage = (Stage) btnatras.getScene().getWindow();
-        stage.close();
+
+        try {
+            App.setRoot("buscador");
+        } catch (IOException ex) {
+        }
+
     }
-    
+
     @FXML
     private void seleccionar(MouseEvent event) {
-        
 
-        
         AnchorPane anchorPane = (AnchorPane) event.getSource();
         for (Auto a : crearArrayList()) {
-            if (CompararAutoSeleccionado(a,(AnchorPane) event.getSource())) {
+            if (CompararAutoSeleccionado(a, (AnchorPane) event.getSource())) {
                 if (auto1 == null) {
                     auto1 = new Auto(a.getTipo(), a.getMarca(), a.getModelo(), a.getColor(), a.getKilometraje(), a.getPrecio(), a.getAnio(), a.getImagen(), a.getDescripcion());
                 } else {
@@ -96,7 +97,6 @@ public class SeleccionaTuAutoController implements Initializable {
         }
     }
 
-
     @FXML
     private void mostrar(ActionEvent event) {
         if (auto1 == null || auto1.getPrecio() == 0) {
@@ -106,7 +106,7 @@ public class SeleccionaTuAutoController implements Initializable {
             AnchorPane ap = new AnchorPane();
             StringBuilder contenido = new StringBuilder();
 
-            try (BufferedReader br = new BufferedReader(new FileReader(pathDescripciones+auto1.getDescripcion()))) {
+            try (BufferedReader br = new BufferedReader(new FileReader(pathDescripciones + auto1.getDescripcion()))) {
                 String linea;
                 while ((linea = br.readLine()) != null) {
                     contenido.append(linea).append("\n");
@@ -115,7 +115,6 @@ public class SeleccionaTuAutoController implements Initializable {
                 e.printStackTrace();
             }
 
-            
             Label label = new Label(contenido.toString());
             label.setPrefWidth(600);
             label.setAlignment(Pos.TOP_LEFT);
@@ -131,7 +130,7 @@ public class SeleccionaTuAutoController implements Initializable {
             stage.show();
         }
     }
-    
+
     @FXML
     private void LlenarDatos(ArrayList<Auto> ar) throws FileNotFoundException {
         VBox vb = new VBox();
@@ -140,23 +139,23 @@ public class SeleccionaTuAutoController implements Initializable {
         vb.setSpacing(15);
 
         for (int i = 0; i < ar.size(); i++) {
-            if (vb.getChildren().size() < 2) { 
-                LlenarVbox(vb, ar.get(i)); 
+            if (vb.getChildren().size() < 2) {
+                LlenarVbox(vb, ar.get(i));
             } else {
-                hb.getChildren().add(vb); 
-                vb = new VBox(); 
+                hb.getChildren().add(vb);
+                vb = new VBox();
                 vb.prefWidth(150);
                 vb.prefHeight(300);
                 vb.setSpacing(15);
-                LlenarVbox(vb, ar.get(i)); 
+                LlenarVbox(vb, ar.get(i));
             }
         }
 
         if (!vb.getChildren().isEmpty()) {
-            hb.getChildren().add(vb); 
+            hb.getChildren().add(vb);
         }
     }
-    
+
     @FXML
     private void LlenarVbox(VBox vb, Auto a) throws FileNotFoundException {
         AnchorPane ap = new AnchorPane();
@@ -164,7 +163,6 @@ public class SeleccionaTuAutoController implements Initializable {
         ap.setStyle("-fx-border-color: #808080; -fx-border-width: 2;");
         ap.setOnMouseClicked(this::seleccionar);
 
-        
         ImageView iv = new ImageView();
         iv.setLayoutX(5);
         iv.setLayoutY(5);
@@ -174,8 +172,6 @@ public class SeleccionaTuAutoController implements Initializable {
         iv.setCache(true);
         iv.setPickOnBounds(true);
         iv.setPreserveRatio(false);
-
-        
 
         Image image = new Image(new FileInputStream(pathImagenes + a.getImagen()));
         iv.setImage(image);
@@ -204,11 +200,10 @@ public class SeleccionaTuAutoController implements Initializable {
         lblprecio.setFont(new Font("System Bold", 12));
 
         ap.getChildren().addAll(iv, lblmodelo, lblanio, lblmarca, lbltipo, lblprecio);
-        
 
         vb.getChildren().add(ap);
     }
-    
+
     @FXML
     private boolean CompararAutoSeleccionado(Auto a, AnchorPane anchorPane) {
         Label lblmodelo = (Label) anchorPane.getChildren().get(1);
@@ -216,18 +211,18 @@ public class SeleccionaTuAutoController implements Initializable {
         Label lblmarca = (Label) anchorPane.getChildren().get(3);
         Label lbltipo = (Label) anchorPane.getChildren().get(4);
         Label lblprecio = (Label) anchorPane.getChildren().get(5);
-        
-        return a.getModelo().equals(lblmodelo.getText()) &&
-            a.getAnio() == Integer.parseInt(lblanio.getText()) &&
-            a.getMarca().equals(lblmarca.getText()) &&
-            a.getTipo().equals(lbltipo.getText()) &&
-            a.getPrecio() == Double.parseDouble(lblprecio.getText().substring(2));
-            
+
+        return a.getModelo().equals(lblmodelo.getText())
+                && a.getAnio() == Integer.parseInt(lblanio.getText())
+                && a.getMarca().equals(lblmarca.getText())
+                && a.getTipo().equals(lbltipo.getText())
+                && a.getPrecio() == Double.parseDouble(lblprecio.getText().substring(2));
+
     }
 
-    public ArrayList<Auto> crearArrayList(){
+    public ArrayList<Auto> crearArrayList() {
         ArrayList<Auto> autos = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(pathArchivos+"autos.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(pathArchivos + "autos.txt"))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] atributos = linea.split(",");
@@ -241,7 +236,7 @@ public class SeleccionaTuAutoController implements Initializable {
                         Integer.parseInt(atributos[6]), // anio
                         atributos[7], // imagen (ruta)
                         atributos[8] // descripcion (ruta de txt)
-                        
+
                 );
                 autos.add(auto);
             }
