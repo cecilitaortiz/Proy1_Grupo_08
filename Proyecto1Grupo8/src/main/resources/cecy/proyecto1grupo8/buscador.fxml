@@ -26,8 +26,8 @@
          </font>
       </RadioButton>
       <ComboBox fx:id="cbColor" layoutX="355.0" layoutY="87.0" prefHeight="25.0" prefWidth="98.0" promptText="Color" style="-fx-border-color: #b74113; -fx-background-color: #ffffff;" />
-      <ComboBox fx:id="cbModelo" layoutX="243.0" layoutY="87.0" prefHeight="25.0" prefWidth="98.0" promptText="Tipo" style="-fx-border-color: #b74113; -fx-background-color: #ffffff;" />
-      <Label layoutX="126.0" layoutY="145.0" text="Año:" textFill="#b74113">
+      <ComboBox fx:id="cbModelo" layoutX="243.0" layoutY="87.0" prefHeight="25.0" prefWidth="98.0" promptText="Modelo" style="-fx-border-color: #b74113; -fx-background-color: #ffffff;" />
+      <Label layoutX="126.0" layoutY="145.0" text="Kilometraje" textFill="#b74113">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
@@ -59,8 +59,8 @@
       </Label>
       <ComboBox fx:id="cbPrecio1" layoutX="204.0" layoutY="257.0" prefHeight="27.0" prefWidth="108.0" promptText="Seleccione" style="-fx-border-color: #b74113; -fx-background-color: #ffffff;" />
       <ComboBox fx:id="cbPrecio2" layoutX="414.0" layoutY="257.0" prefHeight="27.0" prefWidth="108.0" promptText="Seleccione" style="-fx-border-color: #b74113; -fx-background-color: #ffffff;" />
-      <ComboBox fx:id="cbAnio1" layoutX="204.0" layoutY="187.0" prefHeight="27.0" prefWidth="108.0" promptText="Seleccione" style="-fx-border-color: #b74113; -fx-background-color: #ffffff;" />
-      <ComboBox fx:id="cbAnio2" layoutX="414.0" layoutY="187.0" prefHeight="27.0" prefWidth="108.0" promptText="Seleccione" style="-fx-border-color: #b74113; -fx-background-color: #ffffff;" />
+      <ComboBox fx:id="cbKim1" layoutX="204.0" layoutY="187.0" prefHeight="27.0" prefWidth="108.0" promptText="Seleccione" style="-fx-border-color: #b74113; -fx-background-color: #ffffff;" />
+      <ComboBox fx:id="cbKim2" layoutX="414.0" layoutY="187.0" prefHeight="27.0" prefWidth="108.0" promptText="Seleccione" style="-fx-border-color: #b74113; -fx-background-color: #ffffff;" />
       <Button fx:id="btnBuscar" layoutX="416.0" layoutY="321.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="123.0" style="-fx-background-color: #ffffff; -fx-border-color: #b74113;" text="Buscar" textFill="#faa632">
          <font>
             <Font name="System Bold" size="19.0" />

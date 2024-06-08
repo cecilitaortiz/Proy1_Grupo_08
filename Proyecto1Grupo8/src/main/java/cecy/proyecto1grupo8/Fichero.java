@@ -5,40 +5,24 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Fichero {
 
 
-    public static ArrayList<String> leer(String ruta, boolean saltarPrimeraLinea) {
-        ArrayList<String> lineas = new ArrayList<>();
-
-        try ( BufferedReader reader = new BufferedReader(new FileReader(ruta))) {
+    public static Queue<String> leer(String rutaArchivo) {
+        Queue<String> lineas = new LinkedList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
             String linea;
-
-            if (saltarPrimeraLinea) {
-                reader.readLine();
+            while ((linea = br.readLine()) != null) {
+                lineas.offer(linea);
             }
-
-            while ((linea = reader.readLine()) != null) {
-                lineas.add(linea);
-            }
-        } catch (IOException ex) {
-            System.err.println("No se pudo leer el archivo " + ruta);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
         return lineas;
     }
 
-   
-    public static ArrayList<String> leer(String ruta) {
-        return leer(ruta, false);
-    }
-
-
-    public static ArrayList<String> leerSinCabecera(String ruta) {
-        return leer(ruta, true);
-    }
 
  
     public static boolean escribir(String ruta, String linea) {
@@ -53,13 +37,13 @@ public class Fichero {
         return true;
     }
 
-    public static ArrayList<Auto> cargarAutos() {
+    public static Queue<Auto> cargarAutos() {
 
-        ArrayList<Auto> autos = new ArrayList<>();
-        ArrayList<String> datos = Fichero.leer("src/main/resources/archivos/autos.txt");
+        Queue<Auto> autos = new LinkedList<>();
+        Queue<String> datos = Fichero.leer("src/main/resources/archivos/autos.txt");
         for (String dato : datos) {
             String[] line = dato.split(",");
-            Auto a = new Auto(line[0],line[1],line[2],line[3],Integer.valueOf(line[4]),Double.valueOf(line[5]),Integer.valueOf(line[6]),line[7],line[8]);
+            Auto a = new Auto(line[0],line[1],line[2],line[3],Integer.valueOf(line[4]),Double.parseDouble(line[5]),Integer.valueOf(line[6]),line[7],line[8]);
             autos.add(a);
         }
         return autos;
