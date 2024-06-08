@@ -12,8 +12,7 @@ import java.util.*;
 import java.util.ResourceBundle;
 import java.util.Set;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.event.*;
@@ -21,7 +20,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.RadioButton;
+import javafx.scene.control.Label;
+
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 
@@ -34,12 +34,10 @@ public class BuscadorController implements Initializable {
 
     @FXML
     private ComboBox<String> cbMarca;
+    
     @FXML
-    private RadioButton rbNuevo;
-    @FXML
-    private RadioButton rbUsado;
-    @FXML
-    private ComboBox<String> cbColor;
+    private Label verifier;
+    
     @FXML
     private ComboBox<String> cbModelo;
     @FXML
@@ -61,8 +59,8 @@ public class BuscadorController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
-        cargarItems(cbMarca, cbColor, cbKim1, cbKim2, cbPrecio1, cbPrecio2, cbModelo);
+        
+        cargarItems(cbMarca, cbKim1, cbKim2, cbPrecio1, cbPrecio2, cbModelo);
 
         btnRegresar.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -76,41 +74,52 @@ public class BuscadorController implements Initializable {
         btnBuscar.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                try {
-                    App.setRoot("SeleccionaTuAuto");
-                } catch (IOException ex) {
-                }
+                if (cbMarca.getValue() != null
+                        && cbModelo.getValue() != null
+                        && cbModelo.getValue() != null
+                        && cbKim1.getValue() != null
+                        && cbKim2.getValue() != null
+                        && cbPrecio1.getValue() != null
+                        && cbPrecio2.getValue() != null) {
+                    try {
+                        App.setRoot("SeleccionaTuAuto");
+                    } catch (IOException ex) {
+                    }
+                }else{
+                    verifier.setText("Seleccione todas las opciones para continuar!");
+                    }
+
             }
+            
         });
-        final ToggleGroup group = new ToggleGroup();
-        rbNuevo.setToggleGroup(group);
-        rbUsado.setToggleGroup(group);
 
     }
 
+    
+    //Funciones
     public void cargarItems(
             ComboBox<String> cb1,
+            
             ComboBox<String> cb2,
             ComboBox<String> cb3,
             ComboBox<String> cb4,
             ComboBox<String> cb5,
-            ComboBox<String> cb6,
-            ComboBox<String> cb7
+            ComboBox<String> cb6
     ) {
 
         Queue<Auto> autos;
         autos = Fichero.cargarAutos();
         getMarcas(autos, cb1);
-        getColores(autos, cb2);
+        
+        getKim(cb2);
         getKim(cb3);
-        getKim(cb4);
+        getPrecio(cb4);
         getPrecio(cb5);
-        getPrecio(cb6);
         cbMarca.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 String seleccion = cbMarca.getValue();
-                getModelo(autos, seleccion, cb7);
+                getModelo(autos, seleccion, cb6);
             }
         });
 
@@ -127,15 +136,6 @@ public class BuscadorController implements Initializable {
 
     }
 
-    public void getColores(Queue<Auto> list, ComboBox<String> cb) {
-        Set<String> colores = new HashSet<>();
-        for (Auto auto : list) {
-            colores.add(auto.getColor());
-        }
-        for (String string : colores) {
-            cb.getItems().add(string);
-        }
-    }
 
     public void getTipo(Queue<Auto> list, ComboBox<String> cb) {
         Set<String> tipo = new HashSet<>();
@@ -151,7 +151,8 @@ public class BuscadorController implements Initializable {
         cb.getItems().add("0");
         cb.getItems().add("30000");
         cb.getItems().add("60000");
-        cb.getItems().add("9000");
+        cb.getItems().add("90000");
+        cb.getItems().add("120000");
 
     }
 

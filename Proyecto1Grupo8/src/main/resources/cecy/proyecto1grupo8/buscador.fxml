@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
@@ -14,20 +13,9 @@
             <Font name="System Bold Italic" size="26.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cbMarca" layoutX="126.0" layoutY="88.0" prefHeight="25.0" prefWidth="98.0" promptText="Marca" style="-fx-border-color: #b74113; -fx-background-color: #ffffff;" />
-      <RadioButton fx:id="rbNuevo" layoutX="35.0" layoutY="92.0" mnemonicParsing="false" text="Nuevo" textFill="#b74113">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbUsado" layoutX="35.0" layoutY="121.0" mnemonicParsing="false" text="Usado" textFill="#b74113">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </RadioButton>
-      <ComboBox fx:id="cbColor" layoutX="355.0" layoutY="87.0" prefHeight="25.0" prefWidth="98.0" promptText="Color" style="-fx-border-color: #b74113; -fx-background-color: #ffffff;" />
-      <ComboBox fx:id="cbModelo" layoutX="243.0" layoutY="87.0" prefHeight="25.0" prefWidth="98.0" promptText="Modelo" style="-fx-border-color: #b74113; -fx-background-color: #ffffff;" />
-      <Label layoutX="126.0" layoutY="145.0" text="Kilometraje" textFill="#b74113">
+      <ComboBox fx:id="cbMarca" layoutX="155.0" layoutY="88.0" prefHeight="25.0" prefWidth="98.0" promptText="Marca" style="-fx-border-color: #b74113; -fx-background-color: #ffffff;" />
+      <ComboBox fx:id="cbModelo" layoutX="318.0" layoutY="88.0" prefHeight="25.0" prefWidth="98.0" promptText="Modelo" style="-fx-border-color: #b74113; -fx-background-color: #ffffff;" />
+      <Label layoutX="76.0" layoutY="145.0" text="Kilometraje" textFill="#b74113">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
@@ -42,7 +30,7 @@
             <Font name="System Bold Italic" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="126.0" layoutY="225.0" text="Precio:" textFill="#b74113">
+      <Label layoutX="76.0" layoutY="225.0" text="Precio:" textFill="#b74113">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
@@ -71,5 +59,10 @@
             <Font name="System Bold" size="19.0" />
          </font>
       </Button>
+      <Label fx:id="verifier" layoutX="157.0" layoutY="294.0" prefHeight="27.0" prefWidth="271.0" textFill="#b74113">
+         <font>
+            <Font name="System Italic" size="13.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
