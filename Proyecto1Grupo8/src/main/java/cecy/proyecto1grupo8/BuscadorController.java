@@ -180,9 +180,9 @@ public class BuscadorController implements Initializable {
         }
     }
 
-    public String getSelected(ComboBox<String> cb1, ComboBox<String> cb2, ComboBox<String> cb3, ComboBox<String> cb4, ComboBox<String> cb5, ComboBox<String> cb6) {
+    public String[] getSelected(ComboBox<String> cb1, ComboBox<String> cb2, ComboBox<String> cb3, ComboBox<String> cb4, ComboBox<String> cb5, ComboBox<String> cb6) {
         String[] seleccionados = {cb1.getValue(), cb2.getValue(), cb3.getValue(), cb4.getValue(), cb5.getValue(), cb6.getValue()};
 
-        return Arrays.toString(seleccionados);
+        return seleccionados;
     }
 }

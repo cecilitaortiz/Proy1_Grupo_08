@@ -51,7 +51,7 @@ public class SeleccionaTuAutoController implements Initializable {
     public static String pathArchivos = "src/main/resources/archivos/";
     public static String pathDescripciones = "src/main/resources/descripciones/";
     
-    public static String datosBusqueda;
+    public static String[] datosBusqueda;
 
     /**
      * Initializes the controller class.
@@ -59,7 +59,7 @@ public class SeleccionaTuAutoController implements Initializable {
     @Override
 
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println(datosBusqueda);
+        
         try {
             LlenarDatos(crearArrayList());
         } catch (FileNotFoundException ex) {
