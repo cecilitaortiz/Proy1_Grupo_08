@@ -26,6 +26,8 @@ public class PrincipalController implements Initializable {
     @FXML
     private Button buttonAutos;
     @FXML
+    private Button btnFavoritos;
+    @FXML
     private Button buttonRegitros;
     @FXML
     private ImageView imagePrincipal;
@@ -51,6 +53,12 @@ public class PrincipalController implements Initializable {
                 }
             }
         });
+        btnFavoritos.setOnMouseClicked((MouseEvent e) -> {
+            try {
+                App.setRoot("favoritos");
+            } catch (IOException ex) {
+            }
+        });
         
         buttonRegitros.setOnAction(e -> {
             try {
@@ -60,13 +68,16 @@ public class PrincipalController implements Initializable {
             }
         });
         
+        
     }    
     public void cargarImagenes(){
         try{
             Image img1 = new Image(new FileInputStream(App.pathImg+"lupa.png"));
             Image img2 = new Image(new FileInputStream(App.pathImg+"visto.png"));
+            Image img3 = new Image(new FileInputStream(App.pathImg+"auto.png"));
             imageLupa.setImage(img1);
             ImageLista.setImage(img2);
+            imagePrincipal.setImage(img3);
         }catch(IOException e){
             System.out.println(e.getMessage());
         }

@@ -23,8 +23,13 @@
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Button>
-      <ImageView fx:id="imagePrincipal" fitHeight="182.0" fitWidth="315.0" layoutX="134.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imagePrincipal" fitHeight="182.0" fitWidth="315.0" layoutX="48.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="imageLupa" fitHeight="34.0" fitWidth="40.0" layoutX="197.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="ImageLista" fitHeight="34.0" fitWidth="40.0" layoutX="491.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="btnFavoritos" layoutX="402.0" layoutY="242.0" mnemonicParsing="false" style="-fx-border-color: #b74113; -fx-background-color: #ffffff;" text="Ver Favoritos" textFill="#faa632">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

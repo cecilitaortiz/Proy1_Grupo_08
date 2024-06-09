@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -77,7 +76,7 @@ public class SeleccionaTuAutoController implements Initializable {
 
     }
 
-    @FXML
+    /*@FXML
     private void seleccionar(MouseEvent event) {
 
         AnchorPane anchorPane = (AnchorPane) event.getSource();
@@ -99,40 +98,37 @@ public class SeleccionaTuAutoController implements Initializable {
                 break;
             }
         }
-    }
+    }*/
 
     @FXML
-    private void mostrar(ActionEvent event) {
-        if (auto1 == null || auto1.getPrecio() == 0) {
-            lblnoseleccionado.setText("Debes Seleccionar un auto.");
-        } else {
-            lblnoseleccionado.setText("");
-            AnchorPane ap = new AnchorPane();
-            StringBuilder contenido = new StringBuilder();
+    private void mostrar(MouseEvent event) {
+        lblnoseleccionado.setText("");
+        AnchorPane ap = new AnchorPane();
+        StringBuilder contenido = new StringBuilder();
 
-            try (BufferedReader br = new BufferedReader(new FileReader(pathDescripciones + auto1.getDescripcion()))) {
-                String linea;
-                while ((linea = br.readLine()) != null) {
-                    contenido.append(linea).append("\n");
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+        try (BufferedReader br = new BufferedReader(new FileReader(pathDescripciones + auto1.getDescripcion()))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                contenido.append(linea).append("\n");
             }
-
-            Label label = new Label(contenido.toString());
-            label.setPrefWidth(600);
-            label.setAlignment(Pos.TOP_LEFT);
-            label.setLayoutX(10);
-            label.setLayoutY(10);
-            label.setWrapText(true);
-            ap.getChildren().add(label);
-
-            Scene scene = new Scene(ap);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.setTitle("Descripción del Auto");
-            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+        Label label = new Label(contenido.toString());
+        label.setPrefWidth(600);
+        label.setAlignment(Pos.TOP_LEFT);
+        label.setLayoutX(10);
+        label.setLayoutY(10);
+        label.setWrapText(true);
+        ap.getChildren().add(label);
+
+        Scene scene = new Scene(ap);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Descripción del Auto");
+        stage.show();
+        
     }
 
     @FXML
@@ -165,7 +161,7 @@ public class SeleccionaTuAutoController implements Initializable {
         AnchorPane ap = new AnchorPane();
         ap.setPrefSize(150, 132);
         ap.setStyle("-fx-border-color: #808080; -fx-border-width: 2;");
-        ap.setOnMouseClicked(this::seleccionar);
+        ap.setOnMouseClicked(this::mostrar);
 
         ImageView iv = new ImageView();
         iv.setLayoutX(5);
@@ -204,6 +200,8 @@ public class SeleccionaTuAutoController implements Initializable {
         lblprecio.setFont(new Font("System Bold", 12));
 
         ap.getChildren().addAll(iv, lblmodelo, lblanio, lblmarca, lbltipo, lblprecio);
+        ap.setOnMouseClicked(event -> mostrar(null));
+        
 
         vb.getChildren().add(ap);
     }
