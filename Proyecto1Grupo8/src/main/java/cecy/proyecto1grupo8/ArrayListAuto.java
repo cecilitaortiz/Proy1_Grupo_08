@@ -17,31 +17,31 @@ import java.util.NoSuchElementException;
  * @author CltControl
  */
 public class ArrayListAuto<E> implements List<E>{
-    public E arreglo[];
-    private int capac=10;
+    public E[] arr;
+    private int size=10;
     private int n=0;
     
     public ArrayListAuto(){
-        arreglo= (E[])new Object[capac];
+        arr=(E[])new Object[size];
         n=0;
     }
     
-    public void doblarCapac(){
-        if (n == capac) {
-            capac = capac * 2;
-            arreglo = Arrays.copyOf(arreglo, capac);
+    public void aumentarSize(){
+        if (n==size) {
+            size++;
+            arr=Arrays.copyOf(arr, size);
         }
     }
     
     @Override
     public boolean add(E e){
-        if (n>=capac) doblarCapac();
-        arreglo[n++]=e;
+        if (n>=size) aumentarSize();
+        arr[n++]=e;
         return true;
     }
     
     public boolean addAll(ArrayList<E> al){
-        for (int i = 0; i < al.size(); i++) {
+        for (int i=0; i<al.size(); i++) {
             add(al.get(i));
         }
         return true;
@@ -49,12 +49,12 @@ public class ArrayListAuto<E> implements List<E>{
     
     @Override
     public E remove(int indice){
-        E copia = arreglo[indice];
+        E copia = arr[indice];
         for(int i=0;i<n;i++){
             if(i==indice) {
-                int mover= n-1-i;
-                if (mover>0) System.arraycopy(arreglo,i+1,arreglo,i,mover);
-                arreglo[--n]=null;
+                int mover=n-1-i;
+                if (mover>0) System.arraycopy(arr,i+1,arr,i,mover);
+                arr[--n]=null;
             }
         }
         return copia;
@@ -78,7 +78,7 @@ public class ArrayListAuto<E> implements List<E>{
     @Override
     public E get(int index) {
         if (index < 0 ||index >= n ) throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + n);
-        return arreglo[index];
+        return arr[index];
     }
 
     @Override
@@ -88,7 +88,7 @@ public class ArrayListAuto<E> implements List<E>{
 
             @Override
             public boolean hasNext() {
-                return currentIndex < capac;
+                return currentIndex < size;
             }
 
             @Override
@@ -97,7 +97,7 @@ public class ArrayListAuto<E> implements List<E>{
                 if (!hasNext()) {
                     throw new NoSuchElementException("No hay más elementos en la lista.");
                 }
-                return (E) arreglo[currentIndex++];
+                return (E) arr[currentIndex++];
             }
         };
     }
