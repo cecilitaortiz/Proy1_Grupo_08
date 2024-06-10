@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -37,18 +36,9 @@ public class SeleccionaTuAutoController implements Initializable {
     @FXML
     private AnchorPane ap;
     @FXML
-    private Button btnmostrar;
-    @FXML
-    private Label lblnoseleccionado;
-    @FXML
     private AnchorPane root;
     @FXML
     private HBox hb;
-    private Auto auto1;
-    public static String pathImg = "src/main/resources/images/";
-    public static String pathImagenes = "src/main/resources/imagenes/";
-    public static String pathArchivos = "src/main/resources/archivos/";
-    public static String pathDescripciones = "src/main/resources/descripciones/";
     
     public static String[] datosBusqueda;
 
@@ -76,63 +66,41 @@ public class SeleccionaTuAutoController implements Initializable {
 
     }
 
-    /*@FXML
-    private void seleccionar(MouseEvent event) {
-
-        AnchorPane anchorPane = (AnchorPane) event.getSource();
-        for (Auto a : crearArrayList()) {
-            if (CompararAutoSeleccionado(a, (AnchorPane) event.getSource())) {
-                if (auto1 == null) {
-                    auto1 = new Auto(a.getTipo(), a.getMarca(), a.getModelo(), a.getColor(), a.getKilometraje(), a.getPrecio(), a.getAnio(), a.getImagen(), a.getDescripcion());
-                } else {
-                    auto1.setTipo(a.getTipo());
-                    auto1.setMarca(a.getMarca());
-                    auto1.setModelo(a.getModelo());
-                    auto1.setColor(a.getColor());
-                    auto1.setKilometraje(a.getKilometraje());
-                    auto1.setPrecio(a.getPrecio());
-                    auto1.setAnio(a.getAnio());
-                    auto1.setImagen(a.getImagen());
-                    auto1.setDescripcion(a.getDescripcion());
-                }
-                break;
-            }
-        }
-    }*/
-
     @FXML
     private void mostrar(MouseEvent event) {
-        lblnoseleccionado.setText("");
-        AnchorPane ap = new AnchorPane();
-        StringBuilder contenido = new StringBuilder();
+        for (Auto a : crearArrayList()) {
+            if (CompararAutoSeleccionado(a, (AnchorPane) event.getSource())) {
+                AnchorPane ap = new AnchorPane();
+                StringBuilder contenido = new StringBuilder();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(pathDescripciones + auto1.getDescripcion()))) {
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                contenido.append(linea).append("\n");
+                try (BufferedReader br = new BufferedReader(new FileReader(App.pathDescripciones + a.getDescripcion()))) {
+                    String linea;
+                    while ((linea = br.readLine()) != null) {
+                        contenido.append(linea).append("\n");
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Label label = new Label(contenido.toString());
+                label.setPrefWidth(600);
+                label.setAlignment(Pos.TOP_LEFT);
+                label.setLayoutX(10);
+                label.setLayoutY(10);
+                label.setWrapText(true);
+                ap.getChildren().add(label);
+
+                Scene scene = new Scene(ap);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setTitle("Descripción del Auto");
+                stage.show();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-
-        Label label = new Label(contenido.toString());
-        label.setPrefWidth(600);
-        label.setAlignment(Pos.TOP_LEFT);
-        label.setLayoutX(10);
-        label.setLayoutY(10);
-        label.setWrapText(true);
-        ap.getChildren().add(label);
-
-        Scene scene = new Scene(ap);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("Descripción del Auto");
-        stage.show();
-        
     }
 
     @FXML
-    private void LlenarDatos(ArrayList<Auto> ar) throws FileNotFoundException {
+    private void LlenarDatos(ArrayListAuto<Auto> ar) throws FileNotFoundException {
         VBox vb = new VBox();
         vb.prefWidth(150);
         vb.prefHeight(300);
@@ -161,7 +129,7 @@ public class SeleccionaTuAutoController implements Initializable {
         AnchorPane ap = new AnchorPane();
         ap.setPrefSize(150, 132);
         ap.setStyle("-fx-border-color: #808080; -fx-border-width: 2;");
-        ap.setOnMouseClicked(this::mostrar);
+        
 
         ImageView iv = new ImageView();
         iv.setLayoutX(5);
@@ -173,7 +141,7 @@ public class SeleccionaTuAutoController implements Initializable {
         iv.setPickOnBounds(true);
         iv.setPreserveRatio(false);
 
-        Image image = new Image(new FileInputStream(pathImagenes + a.getImagen()));
+        Image image = new Image(new FileInputStream(App.pathImagenes + a.getImagen()));
         iv.setImage(image);
 
         Label lblmodelo = new Label(a.getModelo());
@@ -200,8 +168,7 @@ public class SeleccionaTuAutoController implements Initializable {
         lblprecio.setFont(new Font("System Bold", 12));
 
         ap.getChildren().addAll(iv, lblmodelo, lblanio, lblmarca, lbltipo, lblprecio);
-        ap.setOnMouseClicked(event -> mostrar(null));
-        
+        ap.setOnMouseClicked(this::mostrar);
 
         vb.getChildren().add(ap);
     }
@@ -222,9 +189,9 @@ public class SeleccionaTuAutoController implements Initializable {
 
     }
 
-    public ArrayList<Auto> crearArrayList() {
-        ArrayList<Auto> autos = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(pathArchivos + "autos.txt"))) {
+    public ArrayListAuto<Auto> crearArrayList() {
+        ArrayListAuto<Auto> autos = new ArrayListAuto<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(App.pathArchivos + "autos.txt"))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] atributos = linea.split(",");
