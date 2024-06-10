@@ -30,12 +30,15 @@ import javafx.scene.image.ImageView;
  * @author Saikotek
  */
 public class CarController implements Initializable {
+
     @FXML
     private Label lblConfirma;
     @FXML
     private Button btnBack;
     @FXML
     private Button btnAction;
+    @FXML
+    private Button btnEdit;
     @FXML
     private TextField txtYear;
     @FXML
@@ -56,21 +59,44 @@ public class CarController implements Initializable {
     @FXML
     private ImageView imgCar;
 
+    public static String[] selected = null;
+
     /**
      * Initializes the controller class.
      */
+
+    // {}
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        Image img;
-        try {
-            img = new Image(new FileInputStream(App.pathImg + "auto.png"));
-            imgCar.setImage(img);
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        }
 
         this.SetButtons();
+        Image img;
+
+        if (selected == null) {
+            try {
+                img = new Image(new FileInputStream(App.pathImg + "auto.png"));
+                imgCar.setImage(img);
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            txtType.setText(selected[0]);
+            txtMarca.setText(selected[1]);
+            txtModelo.setText(selected[2]);
+            txtColor.setText(selected[3]);
+            txtKim.setText(selected[4]);
+            txtPrice.setText(selected[5]);
+            txtYear.setText(selected[6]);
+            txtDescription.setText(selected[8]);
+            try {
+                img = new Image(new FileInputStream(App.pathImagenes + selected[7]));
+                imgCar.setImage(img);
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+
+        }
 
     }
 
@@ -94,7 +120,7 @@ public class CarController implements Initializable {
             String precio = txtPrice.getText();
             String desc = txtDescription.getText();
             String[] line = {tipo, marca, modelo, color, anio, kim, precio, App.pathImg + "auto.png", desc};
-            Fichero.escribir(App.pathArchivos + "autos.txt",String.join(", ", line));
+            Fichero.escribir(App.pathArchivos + "autos.txt", String.join(", ", line));
             lblConfirma.setText("Ingreso con éxito");
             SaveCar();
         });
@@ -147,5 +173,5 @@ public class CarController implements Initializable {
             //ex.printStackTrace();
         }
     }
-    
+
 }

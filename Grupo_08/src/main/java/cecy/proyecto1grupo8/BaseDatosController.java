@@ -51,14 +51,14 @@ public class BaseDatosController implements Initializable {
     private TableColumn<Auto, Double> idPrecio;
     @FXML
     private TableColumn<Auto, Integer> idAnio;
-
+    public static String[] autoSelected;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
+        
         this.SetButtons();
 
         ArrayListAuto<Auto> autos;
@@ -86,6 +86,11 @@ public class BaseDatosController implements Initializable {
 
         btnEdit.setOnAction(e -> {
             try {
+                Auto a =tblCar.getSelectionModel().getSelectedItem();
+                String[] datosSeleccionados={a.getTipo(),a.getMarca(),a.getModelo(),a.getColor(),
+                    String.valueOf(a.getKilometraje()),String.valueOf(a.getPrecio()),String.valueOf(a.getAnio())
+                ,a.getImagen(),a.getDescripcion()};
+                CarController.selected=datosSeleccionados;
                 App.setRoot("car");
             } catch (IOException ex) {
                 //ex.printStackTrace();

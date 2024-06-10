@@ -15,7 +15,7 @@
             <Font name="System Bold Italic" size="26.0" />
          </font>
       </Label>
-      <Button id="back" fx:id="btnBack" layoutX="456.0" layoutY="121.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="123.0" style="-fx-background-color: #ffffff; -fx-border-color: #b74113;" text="Regresar" textFill="#faa632">
+      <Button id="back" fx:id="btnBack" layoutX="456.0" layoutY="135.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="123.0" style="-fx-background-color: #ffffff; -fx-border-color: #b74113;" text="Regresar" textFill="#faa632">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
@@ -43,5 +43,10 @@
             <Font name="System Bold Italic" size="23.0" />
          </font>
       </Label>
+      <Button id="add" fx:id="btnEdit" layoutX="456.0" layoutY="84.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="123.0" style="-fx-background-color: #ffffff; -fx-border-color: #b74113;" text="Editar" textFill="#faa632">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Button>
    </children>
 </Pane>
