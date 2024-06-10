@@ -1,4 +1,6 @@
 package cecy.proyecto1grupo8;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -32,6 +34,33 @@ public class App extends Application {
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
+    }
+    
+    public static ArrayListAuto<Auto> crearArrayList() {
+        ArrayListAuto<Auto> autos = new ArrayListAuto<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(App.pathArchivos + "autos.txt"))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] atributos = linea.split(",");
+                Auto auto = new Auto(
+                        atributos[0], // tipo
+                        atributos[1], // marca
+                        atributos[2], // modelo
+                        atributos[3], // color
+                        Integer.valueOf(atributos[4]), // kilometraje
+                        Double.parseDouble(atributos[5]), // precio
+                        Integer.parseInt(atributos[6]), // anio
+                        atributos[7], // imagen (ruta)
+                        atributos[8] // descripcion (ruta de txt)
+
+                );
+                autos.add(auto);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return autos;
     }
 
     public static void main(String[] args) {

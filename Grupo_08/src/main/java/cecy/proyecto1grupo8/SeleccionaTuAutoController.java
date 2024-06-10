@@ -50,7 +50,7 @@ public class SeleccionaTuAutoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         try {
-            LlenarDatos(crearArrayList());
+            LlenarDatos(App.crearArrayList());
         } catch (FileNotFoundException ex) {
         }
 
@@ -68,7 +68,7 @@ public class SeleccionaTuAutoController implements Initializable {
 
     @FXML
     private void mostrar(MouseEvent event) {
-        for (Auto a : crearArrayList()) {
+        for (Auto a : App.crearArrayList()) {
             if (CompararAutoSeleccionado(a, (AnchorPane) event.getSource())) {
                 AnchorPane ap = new AnchorPane();
                 StringBuilder contenido = new StringBuilder();
@@ -200,30 +200,5 @@ public class SeleccionaTuAutoController implements Initializable {
 
     }
 
-    public ArrayListAuto<Auto> crearArrayList() {
-        ArrayListAuto<Auto> autos = new ArrayListAuto<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(App.pathArchivos + "autos.txt"))) {
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                String[] atributos = linea.split(",");
-                Auto auto = new Auto(
-                        atributos[0], // tipo
-                        atributos[1], // marca
-                        atributos[2], // modelo
-                        atributos[3], // color
-                        Integer.valueOf(atributos[4]), // kilometraje
-                        Double.parseDouble(atributos[5]), // precio
-                        Integer.parseInt(atributos[6]), // anio
-                        atributos[7], // imagen (ruta)
-                        atributos[8] // descripcion (ruta de txt)
-
-                );
-                autos.add(auto);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return autos;
-    }
+    
 }

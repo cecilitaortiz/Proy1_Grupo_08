@@ -62,7 +62,7 @@ public class PrincipalController implements Initializable {
         
         buttonRegitros.setOnAction(e -> {
             try {
-                App.setRoot("maintenance");
+                App.setRoot("basedatos");
             } catch (IOException ex) {
                 //ex.printStackTrace();
             }
