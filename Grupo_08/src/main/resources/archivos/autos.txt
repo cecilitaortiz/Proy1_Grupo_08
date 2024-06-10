@@ -1,0 +1,16 @@
+sedan,Ford,Fiesta,rojo,50000,12000,2018,ford_fiesta.jpg,ford_fiesta.txt
+camioneta,Chevrolet,Tracker,azul,60000,15000,2017,chevrolet_tracker.jpg,chevrolet_tracker.txt
+sedan,Toyota,Corolla,plata,40000,18000,2019,toyota_corolla.jpg,toyota_corolla.txt
+hatchback,Volkswagen,Golf,blanco,30000,20000,2020,vw_golf.jpg,vw_golf.txt
+camioneta,Jeep,Wrangler,verde,70000,25000,2016,jeep_wrangler.jpg,jeep_wrangler.txt
+sedan,Honda,Civic,negro,45000,22000,2019,honda_civic.jpg,honda_civic.txt
+hatchback,Ford,Fiesta,gris,35000,15000,2020,ford_fiesta2.jpg,ford_fiesta2.txt
+camioneta,Toyota,Rav4,blanco,55000,28000,2017,toyota_rav4.jpg,toyota_rav4.txt
+sedan,Chevrolet,Cruze,rojo,40000,20000,2018,chevrolet_cruze.jpg,chevrolet_cruze.txt
+hatchback,Hyundai,i30,plata,32000,17000,2019,hyundai_i30.jpg,hyundai_i30.txt
+camioneta,Ford,Escape,gris,60000,23000,2016,ford_escape.jpg,ford_escape.txt
+sedan,Nissan,Sentra,azul,50000,19000,2018,nissan_sentra.jpg,nissan_sentra.txt
+hatchback,Citroen,C3,rojo,30000,14000,2020,citroen_c3.jpg,citroen_c3.txt
+camioneta,Kia,Sportage,blanco,55000,27000,2017,kia_sportage.jpg,kia_sportage.txt
+sedan,Peugeot,308,gris,42000,21000,2019,peugeot_308.jpg,peugeot_308.txt
+hatchback,Renault,Clio,azul,28000,13000,2020,renault_clio.jpg,renault_clio.txt
