@@ -1,4 +1,5 @@
 package cecy.proyecto1grupo8;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -38,7 +39,7 @@ public class SeleccionaTuAutoController implements Initializable {
     private AnchorPane root;
     @FXML
     private HBox hb;
-    
+
     public static String[] datosBusqueda;
 
     /**
@@ -47,7 +48,7 @@ public class SeleccionaTuAutoController implements Initializable {
     @Override
 
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         try {
             LlenarDatos(crearArrayList());
         } catch (FileNotFoundException ex) {
@@ -104,17 +105,29 @@ public class SeleccionaTuAutoController implements Initializable {
         vb.prefWidth(150);
         vb.prefHeight(300);
         vb.setSpacing(15);
+        ArrayListAuto<Auto> autosBusqueda = new ArrayListAuto<>();
+        for (Auto a : ar) {
+            if (datosBusqueda[0].equals(a.getMarca())
+                    &&datosBusqueda[1].equals(a.getModelo())
+                    && Integer.parseInt(datosBusqueda[2])<=a.getKilometraje()
+                    && Integer.parseInt(datosBusqueda[3])>=a.getKilometraje()
+                    && Double.parseDouble(datosBusqueda[4])<=a.getPrecio()
+                    && Double.parseDouble(datosBusqueda[5])>=a.getPrecio()
+                    ) {
+                autosBusqueda.add(a);
+            }
+        }
 
-        for (int i = 0; i < ar.size(); i++) {
+        for (int i = 0; i < autosBusqueda.size(); i++) {
             if (vb.getChildren().size() < 2) {
-                LlenarVbox(vb, ar.get(i));
+                LlenarVbox(vb, autosBusqueda.get(i));
             } else {
                 hb.getChildren().add(vb);
                 vb = new VBox();
                 vb.prefWidth(150);
                 vb.prefHeight(300);
                 vb.setSpacing(15);
-                LlenarVbox(vb, ar.get(i));
+                LlenarVbox(vb, autosBusqueda.get(i));
             }
         }
 
@@ -128,7 +141,6 @@ public class SeleccionaTuAutoController implements Initializable {
         AnchorPane ap = new AnchorPane();
         ap.setPrefSize(150, 132);
         ap.setStyle("-fx-border-color: #808080; -fx-border-width: 2;");
-        
 
         ImageView iv = new ImageView();
         iv.setLayoutX(5);
