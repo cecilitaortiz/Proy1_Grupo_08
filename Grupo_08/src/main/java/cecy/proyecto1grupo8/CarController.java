@@ -4,9 +4,11 @@
  */
 package cecy.proyecto1grupo8;
 
-import cecy.proyecto1grupo8.App;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -19,6 +21,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
@@ -27,9 +30,8 @@ import javafx.scene.image.ImageView;
  * @author Saikotek
  */
 public class CarController implements Initializable {
-
     @FXML
-    private Label lblMessage;
+    private Label lblConfirma;
     @FXML
     private Button btnBack;
     @FXML
@@ -37,23 +39,16 @@ public class CarController implements Initializable {
     @FXML
     private TextField txtYear;
     @FXML
-    private ComboBox<?> cboType;
+    private TextField txtType;
     @FXML
-    private ComboBox<?> cboBrand;
+    private TextField txtMarca;
     @FXML
-    private ComboBox<?> cboModel;
+    private TextField txtModelo;
     @FXML
-    private ComboBox<?> cboColor;
+    private TextField txtColor;
+
     @FXML
-    private Button btnAddColor;
-    @FXML
-    private Button btnAddType;
-    @FXML
-    private Button btnAddBrand;
-    @FXML
-    private Button btnAddModel;
-    @FXML
-    private TextField txtMiliage;
+    private TextField txtKim;
     @FXML
     private TextField txtPrice;
     @FXML
@@ -67,70 +62,90 @@ public class CarController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+        Image img;
+        try {
+            img = new Image(new FileInputStream(App.pathImg + "auto.png"));
+            imgCar.setImage(img);
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+
         this.SetButtons();
-       
-    }    
-    
-    void SetButtons(){
-         //btnAction.setOnAction(e -> App.setRoot());
-        
+
+    }
+
+    @SuppressWarnings("empty-statement")
+    public void SetButtons() {
+        //btnAction.setOnAction(e -> App.setRoot());
+
         btnBack.setOnAction(e -> {
-            if (Action("Confirmation Dialog","¿Desea salir?")== true){
-               ExitWindow();
+            if (Action("Confirmation Dialog", "¿Desea salir?") == true) {
+                ExitWindow();
             }
         });
-              
+
         btnAction.setOnAction(e -> {
-            if (Action("Confirmation Dialog","¿Está correcta la información?") == true){
-                if (SaveCar()==true)
-                    ExitWindow();
-                };
+            String tipo = txtType.getText();
+            String marca = txtMarca.getText();
+            String modelo = txtModelo.getText();
+            String color = txtColor.getText();
+            String anio = txtYear.getText();
+            String kim = txtKim.getText();
+            String precio = txtPrice.getText();
+            String desc = txtDescription.getText();
+            String[] line = {tipo, marca, modelo, color, anio, kim, precio, App.pathImg + "auto.png", desc};
+            Fichero.escribir(App.pathArchivos + "autos.txt",String.join(", ", line));
+            lblConfirma.setText("Ingreso con éxito");
+            SaveCar();
         });
-    };
+    }
+
+    ;
         
-    boolean Action(String title, String message){
+    boolean Action(String title, String message) {
         boolean result = false;
-        
+
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle(title);
         alert.setHeaderText(message);
         //alert.setContentText(message);
 
         Optional<ButtonType> buttonSelected = alert.showAndWait();
-        if (buttonSelected.get() == ButtonType.OK){
+        if (buttonSelected.get() == ButtonType.OK) {
             // ... user chose OK
             result = true;
         } else {
             // ... user chose CANCEL or closed the dialog
             result = false;
         };
-        
+
         return result;
-    };
+    }
+
+    ;
     
-    boolean SaveCar(){
+    boolean SaveCar() {
         boolean result = false;
         try {
             //archivo
-            
-            
-            
+
             result = true;
         } catch (Exception e) {
             //mostrar error
         }
         // Save car to db
-        
-        
-        return result;  
-    };
+
+        return result;
+    }
+
+    ;
     
-    void ExitWindow(){
+    void ExitWindow() {
         try {
-            App.setRoot("maintenance");
+            App.setRoot("basedatos");
         } catch (IOException ex) {
             //ex.printStackTrace();
         }
     }
+    
 }
