@@ -28,10 +28,5 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lblnoseleccionado" layoutX="408.0" layoutY="10.0" textFill="#b74113">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

@@ -4,6 +4,7 @@
  */
 package cecy.proyecto1grupo8;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,11 +22,11 @@ import javafx.scene.layout.*;
 public class FavoritosController implements Initializable {
 
     @FXML
-    private Pane root;
+    private AnchorPane root;
     @FXML
     private Button btnRegresar;
     @FXML
-    private HBox container;
+    private HBox hb;
 
     /**
      * Initializes the controller class.
@@ -33,7 +34,10 @@ public class FavoritosController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
+        try {
+            SeleccionaTuAutoController.LlenarDatos(hb,App.crearArrayList("favoritos.txt"));
+        } catch (FileNotFoundException ex) {
+        }
         btnRegresar.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {

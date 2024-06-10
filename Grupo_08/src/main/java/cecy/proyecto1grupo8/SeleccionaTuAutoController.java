@@ -1,5 +1,6 @@
 package cecy.proyecto1grupo8;
 
+import javafx.event.EventHandler;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -34,10 +35,6 @@ public class SeleccionaTuAutoController implements Initializable {
     @FXML
     private Button btnatras;
     @FXML
-    private AnchorPane ap;
-    @FXML
-    private AnchorPane root;
-    @FXML
     private HBox hb;
 
     public static String[] datosBusqueda;
@@ -48,16 +45,14 @@ public class SeleccionaTuAutoController implements Initializable {
     @Override
 
     public void initialize(URL url, ResourceBundle rb) {
-
         try {
-            LlenarDatos(App.crearArrayList());
+            LlenarDatos(hb, App.crearArrayList("autos.txt"));
         } catch (FileNotFoundException ex) {
         }
-
     }
 
     @FXML
-    private void atras(ActionEvent event) {
+    public void atras(ActionEvent event) {
 
         try {
             App.setRoot("buscador");
@@ -67,13 +62,14 @@ public class SeleccionaTuAutoController implements Initializable {
     }
 
     @FXML
-    private void mostrar(MouseEvent event) {
-        for (Auto a : App.crearArrayList()) {
+    public static void mostrar(MouseEvent event) {
+        for (Auto a : App.crearArrayList("autos.txt")) {
             if (CompararAutoSeleccionado(a, (AnchorPane) event.getSource())) {
                 AnchorPane ap = new AnchorPane();
                 StringBuilder contenido = new StringBuilder();
 
-                try (BufferedReader br = new BufferedReader(new FileReader(App.pathDescripciones + a.getDescripcion()))) {
+                try (BufferedReader br = new BufferedReader(
+                        new FileReader(App.pathDescripciones + a.getDescripcion()))) {
                     String linea;
                     while ((linea = br.readLine()) != null) {
                         contenido.append(linea).append("\n");
@@ -100,7 +96,7 @@ public class SeleccionaTuAutoController implements Initializable {
     }
 
     @FXML
-    private void LlenarDatos(ArrayListAuto<Auto> ar) throws FileNotFoundException {
+    public static void LlenarDatos(HBox hbox, ArrayListAuto<Auto> ar) throws FileNotFoundException {
         VBox vb = new VBox();
         vb.prefWidth(150);
         vb.prefHeight(300);
@@ -108,12 +104,11 @@ public class SeleccionaTuAutoController implements Initializable {
         ArrayListAuto<Auto> autosBusqueda = new ArrayListAuto<>();
         for (Auto a : ar) {
             if (datosBusqueda[0].equals(a.getMarca())
-                    &&datosBusqueda[1].equals(a.getModelo())
-                    && Integer.parseInt(datosBusqueda[2])<=a.getKilometraje()
-                    && Integer.parseInt(datosBusqueda[3])>=a.getKilometraje()
-                    && Double.parseDouble(datosBusqueda[4])<=a.getPrecio()
-                    && Double.parseDouble(datosBusqueda[5])>=a.getPrecio()
-                    ) {
+                    && datosBusqueda[1].equals(a.getModelo())
+                    && Integer.parseInt(datosBusqueda[2]) <= a.getKilometraje()
+                    && Integer.parseInt(datosBusqueda[3]) >= a.getKilometraje()
+                    && Double.parseDouble(datosBusqueda[4]) <= a.getPrecio()
+                    && Double.parseDouble(datosBusqueda[5]) >= a.getPrecio()) {
                 autosBusqueda.add(a);
             }
         }
@@ -122,7 +117,7 @@ public class SeleccionaTuAutoController implements Initializable {
             if (vb.getChildren().size() < 2) {
                 LlenarVbox(vb, autosBusqueda.get(i));
             } else {
-                hb.getChildren().add(vb);
+                hbox.getChildren().add(vb);
                 vb = new VBox();
                 vb.prefWidth(150);
                 vb.prefHeight(300);
@@ -132,12 +127,12 @@ public class SeleccionaTuAutoController implements Initializable {
         }
 
         if (!vb.getChildren().isEmpty()) {
-            hb.getChildren().add(vb);
+            hbox.getChildren().add(vb);
         }
     }
 
     @FXML
-    private void LlenarVbox(VBox vb, Auto a) throws FileNotFoundException {
+    public static void LlenarVbox(VBox vb, Auto a) throws FileNotFoundException {
         AnchorPane ap = new AnchorPane();
         ap.setPrefSize(150, 132);
         ap.setStyle("-fx-border-color: #808080; -fx-border-width: 2;");
@@ -179,13 +174,18 @@ public class SeleccionaTuAutoController implements Initializable {
         lblprecio.setFont(new Font("System Bold", 12));
 
         ap.getChildren().addAll(iv, lblmodelo, lblanio, lblmarca, lbltipo, lblprecio);
-        ap.setOnMouseClicked(this::mostrar);
+        ap.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                mostrar(e);
+            }
+        });
 
         vb.getChildren().add(ap);
     }
 
     @FXML
-    private boolean CompararAutoSeleccionado(Auto a, AnchorPane anchorPane) {
+    public static boolean CompararAutoSeleccionado(Auto a, AnchorPane anchorPane) {
         Label lblmodelo = (Label) anchorPane.getChildren().get(1);
         Label lblanio = (Label) anchorPane.getChildren().get(2);
         Label lblmarca = (Label) anchorPane.getChildren().get(3);
@@ -200,5 +200,9 @@ public class SeleccionaTuAutoController implements Initializable {
 
     }
 
-    
+    public SeleccionaTuAutoController() {
+        this.btnatras = btnatras;
+        this.hb = hb;
+    }
+
 }

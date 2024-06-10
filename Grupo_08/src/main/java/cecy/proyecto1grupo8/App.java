@@ -1,4 +1,5 @@
 package cecy.proyecto1grupo8;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -15,11 +16,11 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     private static Scene scene;
-    public static String pathImg="src/main/resources/images/";
+    public static String pathImg = "src/main/resources/images/";
     public static String pathImagenes = "src/main/resources/imagenes/";
     public static String pathArchivos = "src/main/resources/archivos/";
     public static String pathDescripciones = "src/main/resources/descripciones/";
-    
+
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("principal"), 600, 400);
@@ -35,10 +36,10 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
-    
-    public static ArrayListAuto<Auto> crearArrayList() {
+
+    public static ArrayListAuto<Auto> crearArrayList(String ruta) {
         ArrayListAuto<Auto> autos = new ArrayListAuto<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(App.pathArchivos + "autos.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(App.pathArchivos + ruta))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] atributos = linea.split(",");
