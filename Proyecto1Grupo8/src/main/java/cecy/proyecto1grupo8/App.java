@@ -1,5 +1,4 @@
 package cecy.proyecto1grupo8;
-
 import java.io.IOException;
 
 import javafx.application.Application;
