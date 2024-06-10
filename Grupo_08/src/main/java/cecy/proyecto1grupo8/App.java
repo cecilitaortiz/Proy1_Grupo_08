@@ -15,14 +15,14 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     private static Scene scene;
-    public static String pathImg="src/main/resources/images/";
+    public static String pathImg="src/main/resources/images/";   
     public static String pathImagenes = "src/main/resources/imagenes/";
     public static String pathArchivos = "src/main/resources/archivos/";
     public static String pathDescripciones = "src/main/resources/descripciones/";
     
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("principal"), 600, 400);
+        scene = new Scene(loadFXML("principal"));
         stage.setScene(scene);
         stage.show();
     }
