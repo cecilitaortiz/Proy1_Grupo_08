@@ -78,6 +78,7 @@ public class BaseDatosController implements Initializable {
 
         btnAdd.setOnAction(e -> {
             try {
+                CarController.selected=null;
                 App.setRoot("car");
             } catch (IOException ex) {
                 //ex.printStackTrace();

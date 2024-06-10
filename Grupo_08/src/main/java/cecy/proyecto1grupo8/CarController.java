@@ -122,7 +122,7 @@ public class CarController implements Initializable {
             String[] line = {tipo, marca, modelo, color, anio, kim, precio, App.pathImg + "auto.png", desc};
             Fichero.escribir(App.pathArchivos + "autos.txt", String.join(", ", line));
             lblConfirma.setText("Ingreso con éxito");
-            SaveCar();
+            
         });
     }
 
@@ -150,21 +150,7 @@ public class CarController implements Initializable {
 
     ;
     
-    boolean SaveCar() {
-        boolean result = false;
-        try {
-            //archivo
-
-            result = true;
-        } catch (Exception e) {
-            //mostrar error
-        }
-        // Save car to db
-
-        return result;
-    }
-
-    ;
+    
     
     void ExitWindow() {
         try {

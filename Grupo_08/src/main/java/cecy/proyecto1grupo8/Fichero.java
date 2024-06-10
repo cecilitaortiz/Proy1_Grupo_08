@@ -23,8 +23,6 @@ public class Fichero {
         return lineas;
     }
 
-
- 
     public static boolean escribir(String ruta, String linea) {
 
         try ( BufferedWriter writer = new BufferedWriter(new FileWriter(ruta, true))) {
