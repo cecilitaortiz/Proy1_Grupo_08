@@ -6,13 +6,26 @@
 <?import javafx.scene.text.Font?>
 
 
-<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cecy.proyecto1grupo8.FavoritosController">
+<AnchorPane id="root" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cecy.proyecto1grupo8.FavoritosController">
    <children>
-      <Button fx:id="btnRegresar" layoutX="476.0" layoutY="334.0" mnemonicParsing="false" style="-fx-border-color: #b74113; -fx-background-color: #ffffff;" text="Regresar" textFill="#faa632">
+      <ScrollPane layoutX="10.0" layoutY="35.0" pannable="true" prefHeight="300.0" prefWidth="580.0" style="-fx-background-color: white;">
+        <content>
+          <AnchorPane maxHeight="300.0" minHeight="0.0" minWidth="0.0">
+               <children>
+                  <HBox fx:id="hb" fillHeight="false" spacing="20.0" style="-fx-background-color: white;" />
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <Button fx:id="btnRegresar" layoutX="10.0" layoutY="344.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="123.0" style="-fx-background-color: #ffffff; -fx-border-color: #b74113;" text="Regresar" textFill="#faa632">
          <font>
-            <Font name="System Bold Italic" size="15.0" />
+            <Font name="System Bold" size="19.0" />
          </font>
       </Button>
-      <HBox fx:id="container" layoutX="37.0" layoutY="72.0" prefHeight="236.0" prefWidth="521.0" />
+      <Label layoutX="10.0" layoutY="6.0" text="Favoritos:" textFill="#b74113">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
    </children>
-</Pane>
+</AnchorPane>

@@ -62,7 +62,7 @@ public class BaseDatosController implements Initializable {
         this.SetButtons();
 
         ArrayListAuto<Auto> autos;
-        autos = App.crearArrayList();
+        autos = App.crearArrayList("autos.txt");
         cargarAutos(autos);
 
     }
@@ -72,7 +72,7 @@ public class BaseDatosController implements Initializable {
             try {
                 App.setRoot("principal");
             } catch (IOException ex) {
-                //ex.printStackTrace();
+                // ex.printStackTrace();
             }
         });
 
@@ -81,7 +81,7 @@ public class BaseDatosController implements Initializable {
                 CarController.selected=null;
                 App.setRoot("car");
             } catch (IOException ex) {
-                //ex.printStackTrace();
+                // ex.printStackTrace();
             }
         });
 
@@ -94,7 +94,7 @@ public class BaseDatosController implements Initializable {
                 CarController.selected=datosSeleccionados;
                 App.setRoot("car");
             } catch (IOException ex) {
-                //ex.printStackTrace();
+                // ex.printStackTrace();
             }
         });
 
@@ -102,26 +102,25 @@ public class BaseDatosController implements Initializable {
             try {
                 App.setRoot("car");
             } catch (IOException ex) {
-                //ex.printStackTrace();
+                // ex.printStackTrace();
             }
         });
 
     }
 
     void cargarAutos(ArrayListAuto<Auto> autos) {
-        
-            ObservableList<Auto> list = FXCollections.observableArrayList(autos);
-            idTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
-            idMarca.setCellValueFactory(new PropertyValueFactory<>("marca"));
-            idModelo.setCellValueFactory(new PropertyValueFactory<>("modelo"));
-            idColor.setCellValueFactory(new PropertyValueFactory<>("color"));
-            idKim.setCellValueFactory(new PropertyValueFactory<>("kilometraje"));
-            idPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
-            idAnio.setCellValueFactory(new PropertyValueFactory<>("anio"));
 
-            tblCar.setItems(list);
-            
-       
+        ObservableList<Auto> list = FXCollections.observableArrayList(autos);
+        idTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+        idMarca.setCellValueFactory(new PropertyValueFactory<>("marca"));
+        idModelo.setCellValueFactory(new PropertyValueFactory<>("modelo"));
+        idColor.setCellValueFactory(new PropertyValueFactory<>("color"));
+        idKim.setCellValueFactory(new PropertyValueFactory<>("kilometraje"));
+        idPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
+        idAnio.setCellValueFactory(new PropertyValueFactory<>("anio"));
+
+        tblCar.setItems(list);
+
     }
 
 }
