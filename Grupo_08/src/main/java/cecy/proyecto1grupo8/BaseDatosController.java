@@ -5,9 +5,13 @@
 package cecy.proyecto1grupo8;
 
 import cecy.proyecto1grupo8.App;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Queue;
 import java.util.ResourceBundle;
 import java.util.Set;
 import javafx.collections.FXCollections;
@@ -52,13 +56,14 @@ public class BaseDatosController implements Initializable {
     @FXML
     private TableColumn<Auto, Integer> idAnio;
     public static String[] autoSelected;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+
         this.SetButtons();
 
         ArrayListAuto<Auto> autos;
@@ -78,7 +83,7 @@ public class BaseDatosController implements Initializable {
 
         btnAdd.setOnAction(e -> {
             try {
-                CarController.selected=null;
+                CarController.selected = null;
                 App.setRoot("car");
             } catch (IOException ex) {
                 // ex.printStackTrace();
@@ -87,11 +92,11 @@ public class BaseDatosController implements Initializable {
 
         btnEdit.setOnAction(e -> {
             try {
-                Auto a =tblCar.getSelectionModel().getSelectedItem();
-                String[] datosSeleccionados={a.getTipo(),a.getMarca(),a.getModelo(),a.getColor(),
-                    String.valueOf(a.getKilometraje()),String.valueOf(a.getPrecio()),String.valueOf(a.getAnio())
-                ,a.getImagen(),a.getDescripcion()};
-                CarController.selected=datosSeleccionados;
+                Auto a = tblCar.getSelectionModel().getSelectedItem();
+                String[] datosSeleccionados = {a.getTipo(), a.getMarca(), a.getModelo(), a.getColor(),
+                    String.valueOf(a.getKilometraje()), String.valueOf(a.getPrecio()), String.valueOf(a.getAnio()),
+                     a.getImagen(), a.getDescripcion()};
+                CarController.selected = datosSeleccionados;
                 App.setRoot("car");
             } catch (IOException ex) {
                 // ex.printStackTrace();
@@ -99,11 +104,24 @@ public class BaseDatosController implements Initializable {
         });
 
         btnDelete.setOnAction(e -> {
+            Auto a = tblCar.getSelectionModel().getSelectedItem();
+            String[] datosSeleccionados = {a.getTipo(), a.getMarca(), a.getModelo(), a.getColor(),
+                String.valueOf(a.getKilometraje()), String.valueOf(a.getPrecio()), String.valueOf(a.getAnio()),
+                 a.getImagen(), a.getDescripcion()};
             try {
-                App.setRoot("car");
-            } catch (IOException ex) {
-                // ex.printStackTrace();
-            }
+            // Leer archivo
+            List<String> lineas = Fichero.leerArchivo(App.pathArchivos+"autos.txt");
+
+            // Eliminar línea
+            lineas = Fichero.eliminarLinea(lineas, String.join(", ", datosSeleccionados));
+
+            // Escribir archivo
+            Fichero.escribirArchivo(App.pathArchivos+"autos.txt", lineas);
+
+            System.out.println("La línea ha sido eliminada.");
+        } catch (IOException eio) {
+            eio.printStackTrace();
+        }
         });
 
     }

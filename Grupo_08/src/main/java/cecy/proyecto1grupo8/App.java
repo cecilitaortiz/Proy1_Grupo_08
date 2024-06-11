@@ -50,7 +50,7 @@ public class App extends Application {
                         atributos[3], // color
                         Integer.valueOf(atributos[4]), // kilometraje
                         Double.parseDouble(atributos[5]), // precio
-                        Integer.parseInt(atributos[6]), // anio
+                        Integer.valueOf(atributos[6]), // anio
                         atributos[7], // imagen (ruta)
                         atributos[8] // descripcion (ruta de txt)
 
