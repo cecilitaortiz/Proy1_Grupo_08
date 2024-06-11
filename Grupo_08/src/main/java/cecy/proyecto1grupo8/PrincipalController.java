@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -55,6 +56,8 @@ public class PrincipalController implements Initializable {
         });
         btnFavoritos.setOnMouseClicked((MouseEvent e) -> {
             try {
+                
+        System.out.println(FavoritosController.fav.length == 1);
                 App.setRoot("favoritos");
             } catch (IOException ex) {
             }

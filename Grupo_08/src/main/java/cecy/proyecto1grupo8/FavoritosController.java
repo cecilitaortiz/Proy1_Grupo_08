@@ -8,12 +8,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
 /**
  *
@@ -37,9 +39,9 @@ public class FavoritosController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 
-        System.out.println(fav.length == 1);
+        
         try {
-            SeleccionaTuAutoController.LlenarDatos(hb, App.crearArrayList("favoritos.txt"), fav);
+            SeleccionaTuAutoController.LlenarDatos(hb, App.crearArrayList("autos.txt"), fav);
         } catch (FileNotFoundException ex) {
         }
         btnRegresar.setOnMouseClicked(new EventHandler<MouseEvent>() {

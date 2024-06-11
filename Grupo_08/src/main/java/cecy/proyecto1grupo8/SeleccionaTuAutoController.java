@@ -204,10 +204,4 @@ public class SeleccionaTuAutoController implements Initializable {
                 && a.getPrecio() == Double.parseDouble(lblprecio.getText().substring(2));
 
     }
-
-    public SeleccionaTuAutoController() {
-        this.btnatras = btnatras;
-        this.hb = hb;
-    }
-
 }
