@@ -47,34 +47,6 @@ public class Fichero {
         return true;
     }
     
-public static List<String> leerArchivo(String rutaArchivo) throws IOException {
-        List<String> lineas = new LinkedList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                lineas.add(linea);
-            }
-        }
-        return lineas;
-    }
-    public static List<String> eliminarLinea(List<String> lineas, String condicion) {
-        List<String> nuevasLineas = new LinkedList<>();
-        for (String linea : lineas) {
-            if (!linea.equals(condicion)) {
-                nuevasLineas.add(linea);
-            }
-        }
-        return nuevasLineas;
-    }
-
-    public static void escribirArchivo(String rutaArchivo, List<String> lineas) throws IOException {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo))) {
-            for (String linea : lineas) {
-                bw.write(linea);
-                bw.newLine();
-            }
-        }
-    }
 
     public static Queue<Auto> cargarAutos() {
 

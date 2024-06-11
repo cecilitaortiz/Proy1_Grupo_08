@@ -43,7 +43,7 @@ public class SeleccionaTuAutoController implements Initializable {
     private Label lbltitulo;
 
     public static String[] datosBusqueda;
-    public static ArrayListAuto<Auto> autos=App.crearArrayList("autos.txt");
+    //public static ArrayListAuto<Auto> autos=App.crearArrayList("autos.txt");
     public static ArrayListAuto<Auto> favoritos=App.crearArrayList("favoritos.txt");
     public static AnchorPane seleccionado;
 
@@ -54,7 +54,7 @@ public class SeleccionaTuAutoController implements Initializable {
 
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            LlenarDatos(hb, autos, datosBusqueda);
+            LlenarDatos(hb, App.crearArrayList("autos.txt"), datosBusqueda);
         } catch (FileNotFoundException ex) {
         }
     }
@@ -72,7 +72,7 @@ public class SeleccionaTuAutoController implements Initializable {
    
     @FXML
     public static void mostrar(MouseEvent event) {
-        for (Auto a : autos) {
+        for (Auto a : App.crearArrayList("autos.txt")) {
             if (CompararAutoSeleccionado(a, (AnchorPane) event.getSource())) {
                 AnchorPane ap = new AnchorPane();
                 StringBuilder contenido = new StringBuilder();
@@ -261,7 +261,7 @@ public class SeleccionaTuAutoController implements Initializable {
                     stage.close();
                     Stage s=(Stage)((Button) event.getSource()).getScene().getWindow();
                     s.close();
-                    for(Auto a:autos){
+                    for(Auto a:App.crearArrayList("autos.txt")){
                         if(CompararAutoSeleccionado(a, seleccionado) && !favoritos.contiene(a)){
                             Fichero.escribir(App.pathArchivos+"favoritos.txt",a.toWrite());
                         }

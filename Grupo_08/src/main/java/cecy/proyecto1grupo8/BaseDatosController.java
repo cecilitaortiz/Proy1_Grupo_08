@@ -57,7 +57,7 @@ public class BaseDatosController implements Initializable {
     @FXML
     private TableColumn<Auto, Integer> idAnio;
     public static String[] autoSelected;
-    public static ArrayListAuto<Auto> autos=App.crearArrayList("autos.txt");
+    public static ArrayListAuto<Auto> autos = App.crearArrayList("autos.txt");
 
     /**
      * Initializes the controller class.
@@ -106,21 +106,19 @@ public class BaseDatosController implements Initializable {
         btnDelete.setOnMouseClicked(e -> {
             Auto selected = tblCar.getSelectionModel().getSelectedItem();
             autos.removeElement(selected);
-            List<String> lineas = new LinkedList<>();
-            
-            for(Auto a:autos){
-                String[] datosSeleccionados = {a.getTipo(), a.getMarca(), a.getModelo(), a.getColor(),
-                    String.valueOf(a.getKilometraje()), String.valueOf(a.getPrecio()), String.valueOf(a.getAnio()),
-                    a.getImagen(), a.getDescripcion()};
-                lineas.add(String.join(",", datosSeleccionados));
-                }
-                
-            try {
-                Fichero.escribirArchivo(App.pathArchivos + "autos.txt", lineas);
+            String lineas = "";
 
-            } catch (IOException ex) {
-                ex.printStackTrace();
+            for (int i=0;i<autos.size();i++) {
+                String[] datosSeleccionados = {autos.get(i).getTipo(), autos.get(i).getMarca(), autos.get(i).getModelo(), autos.get(i).getColor(),
+                    String.valueOf(autos.get(i).getKilometraje()), String.valueOf(autos.get(i).getPrecio()), String.valueOf(autos.get(i).getAnio()),
+                    autos.get(i).getImagen(), autos.get(i).getDescripcion()};
+                if(i!=autos.size()-1) lineas += (String.join(",", datosSeleccionados) + "\n");
+                else lineas += (String.join(",", datosSeleccionados));
+                
+
             }
+            Fichero.sobreEscribir(App.pathArchivos + "autos.txt", lineas);
+
             cargarAutos(App.crearArrayList("autos.txt"));
         });
 
