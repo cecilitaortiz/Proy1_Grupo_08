@@ -18,7 +18,7 @@ import java.util.NoSuchElementException;
  */
 public class ArrayListAuto<E> implements List<E>{
     public E[] arr;
-    private int size=10;
+    private int size=1;
     private int n=0;
     
     public ArrayListAuto(){
@@ -59,6 +59,9 @@ public class ArrayListAuto<E> implements List<E>{
         }
         return copia;
     }
+
+    
+    
     
     @Override
     public int size() {
