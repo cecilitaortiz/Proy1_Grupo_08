@@ -60,7 +60,18 @@ public class ArrayListAuto<E> implements List<E>{
         return copia;
     }
 
-    
+    public boolean removeElement(E element) {
+        for (int i = 0; i < size; i++) {
+            if (arr[i].equals(element)) {
+                for (int j = i; j < size - 1; j++) {
+                    arr[j] = arr[j + 1];
+                }
+                arr[--size] = null; // Clear to let GC do its work
+                return true;
+            }
+        }
+        return false;
+    }
     
     
     @Override
