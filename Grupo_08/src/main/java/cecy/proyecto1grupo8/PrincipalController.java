@@ -43,7 +43,7 @@ public class PrincipalController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         cargarImagenes();
-        
+
         buttonAutos.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
@@ -59,28 +59,28 @@ public class PrincipalController implements Initializable {
             } catch (IOException ex) {
             }
         });
-        
+
         buttonRegitros.setOnAction(e -> {
             try {
                 App.setRoot("basedatos");
             } catch (IOException ex) {
-                //ex.printStackTrace();
+                // ex.printStackTrace();
             }
         });
-        
-        
-    }    
-    public void cargarImagenes(){
-        try{
-            Image img1 = new Image(new FileInputStream(App.pathImg+"lupa.png"));
-            Image img2 = new Image(new FileInputStream(App.pathImg+"visto.png"));
-            Image img3 = new Image(new FileInputStream(App.pathImg+"auto.png"));
+
+    }
+
+    public void cargarImagenes() {
+        try {
+            Image img1 = new Image(new FileInputStream(App.pathImg + "lupa.png"));
+            Image img2 = new Image(new FileInputStream(App.pathImg + "visto.png"));
+            Image img3 = new Image(new FileInputStream(App.pathImg + "auto.png"));
             imageLupa.setImage(img1);
             ImageLista.setImage(img2);
             imagePrincipal.setImage(img3);
-        }catch(IOException e){
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-       
+
     }
 }
