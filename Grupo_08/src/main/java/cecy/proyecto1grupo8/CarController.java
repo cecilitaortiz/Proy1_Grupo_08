@@ -119,7 +119,7 @@ public class CarController implements Initializable {
             String kim = txtKim.getText();
             String precio = txtPrice.getText();
             String desc = txtDescription.getText();
-            String[] line = {tipo, marca, modelo, color, anio, kim, precio, App.pathImg + "auto.png", desc};
+            String[] line = {tipo, marca, modelo, color, anio, kim, precio,"auto.png", desc};
             Fichero.escribir(App.pathArchivos + "autos.txt", String.join(", ", line));
             lblConfirma.setText("Ingreso con éxito");
             

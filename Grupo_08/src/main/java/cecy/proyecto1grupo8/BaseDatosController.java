@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Queue;
 import java.util.ResourceBundle;
 import java.util.Set;
 import javafx.collections.FXCollections;
@@ -107,17 +108,20 @@ public class BaseDatosController implements Initializable {
             String[] datosSeleccionados = {a.getTipo(), a.getMarca(), a.getModelo(), a.getColor(),
                 String.valueOf(a.getKilometraje()), String.valueOf(a.getPrecio()), String.valueOf(a.getAnio()),
                  a.getImagen(), a.getDescripcion()};
-            try (BufferedReader br = new BufferedReader(
-                    new FileReader(App.pathArchivos + "autos.txt"))) {
-                String linea;
-                while ((linea = br.readLine()) != null) {
-                    if (linea.equals(String.join(",", datosSeleccionados))) {
-                        
-                    }
-                }
-            } catch (IOException eio) {
-                eio.printStackTrace();
-            }
+            try {
+            // Leer archivo
+            List<String> lineas = Fichero.leerArchivo(App.pathArchivos+"autos.txt");
+
+            // Eliminar línea
+            lineas = Fichero.eliminarLinea(lineas, String.join(", ", datosSeleccionados));
+
+            // Escribir archivo
+            Fichero.escribirArchivo(App.pathArchivos+"autos.txt", lineas);
+
+            System.out.println("La línea ha sido eliminada.");
+        } catch (IOException eio) {
+            eio.printStackTrace();
+        }
         });
 
     }
