@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.ResourceBundle;
@@ -80,7 +81,7 @@ public class BaseDatosController implements Initializable {
                 // ex.printStackTrace();
             }
         });
-        
+
         btnAdd.setOnMouseClicked(e -> {
             try {
                 CarController.selected = null;
@@ -95,7 +96,7 @@ public class BaseDatosController implements Initializable {
                 Auto a = tblCar.getSelectionModel().getSelectedItem();
                 String[] datosSeleccionados = {a.getTipo(), a.getMarca(), a.getModelo(), a.getColor(),
                     String.valueOf(a.getKilometraje()), String.valueOf(a.getPrecio()), String.valueOf(a.getAnio()),
-                     a.getImagen(), a.getDescripcion()};
+                    a.getImagen(), a.getDescripcion()};
                 CarController.selected = datosSeleccionados;
                 App.setRoot("car");
             } catch (IOException ex) {
@@ -107,21 +108,52 @@ public class BaseDatosController implements Initializable {
             Auto a = tblCar.getSelectionModel().getSelectedItem();
             String[] datosSeleccionados = {a.getTipo(), a.getMarca(), a.getModelo(), a.getColor(),
                 String.valueOf(a.getKilometraje()), String.valueOf(a.getPrecio()), String.valueOf(a.getAnio()),
-                 a.getImagen(), a.getDescripcion()};
+                a.getImagen(), a.getDescripcion()};
+            System.out.print(String.join(",", datosSeleccionados));
+            List<String> lineas = new LinkedList<>();
+            try (BufferedReader br = new BufferedReader(new FileReader(App.pathArchivos + "autos.txt"))) {
+
+                String linea;
+                while ((linea = br.readLine()) != null) {
+                    lineas.add(linea);
+
+                }
+
+            } catch (IOException eio) {
+                eio.printStackTrace();
+
+            }
+            for (String l : lineas) {
+                if (l.equals(String.join(",", datosSeleccionados))) {
+                    lineas.remove(l);
+
+                }
+            }
+
             try {
-            // Leer archivo
-            List<String> lineas = Fichero.leerArchivo(App.pathArchivos+"autos.txt");
+                Fichero.escribirArchivo(App.pathArchivos + "lona.txt", lineas);
 
-            // Eliminar línea
-            lineas = Fichero.eliminarLinea(lineas, String.join(",", datosSeleccionados));
-
-            // Escribir archivo
-            Fichero.escribirArchivo(App.pathArchivos+"autos.txt", lineas);
-
-            System.out.println("La línea ha sido eliminada.");
-        } catch (IOException eio) {
-            eio.printStackTrace();
-        }
+                /*
+                try {
+                // Leer archivo
+                List<String> lineas = Fichero.leerArchivo(App.pathArchivos+"autos.txt");
+                
+                // Eliminar línea
+                lineas = Fichero.eliminarLinea(lineas, String.join(",", datosSeleccionados));
+                
+                // Escribir archivo
+                Fichero.escribirArchivo(App.pathArchivos+"autos.txt", lineas);
+                
+                System.out.println("La línea ha sido eliminada.");
+                } catch (IOException eio) {
+                eio.printStackTrace();
+                
+                }
+                
+                 */
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         });
 
     }

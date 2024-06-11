@@ -35,7 +35,7 @@ public class Fichero {
         return true;
     }
 public static List<String> leerArchivo(String rutaArchivo) throws IOException {
-        List<String> lineas = new ArrayList<>();
+        List<String> lineas = new LinkedList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
             String linea;
             while ((linea = br.readLine()) != null) {
