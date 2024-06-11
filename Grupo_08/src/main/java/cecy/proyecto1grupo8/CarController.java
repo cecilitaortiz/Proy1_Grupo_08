@@ -110,7 +110,7 @@ public class CarController implements Initializable {
             }
         });
 
-        btnAction.setOnAction(e -> {
+        btnAction.setOnMouseClicked(e -> {
             String tipo = txtType.getText();
             String marca = txtMarca.getText();
             String modelo = txtModelo.getText();
@@ -119,13 +119,13 @@ public class CarController implements Initializable {
             String kim = txtKim.getText();
             String precio = txtPrice.getText();
             String desc = txtDescription.getText();
-            String[] line = {tipo, marca, modelo, color, anio, kim, precio,"auto.png", desc};
-            Fichero.escribir(App.pathArchivos + "autos.txt", String.join(", ", line));
+            String[] line = {tipo, marca, modelo, color,kim, precio, anio, "auto.png", desc};
+            Fichero.escribir(App.pathArchivos + "autos.txt", String.join(",", line));
             lblConfirma.setText("Ingreso con éxito");
             
         });
         
-        btnEdit.setOnAction(e -> {
+        btnEdit.setOnMouseClicked(e -> {
             
         });
     }

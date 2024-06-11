@@ -26,7 +26,7 @@ public class Fichero {
     public static boolean escribir(String ruta, String linea) {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(ruta, true))) {
-            writer.write(linea + "\n");
+            writer.write(linea+"\n");
         } catch (IOException ex) {
             System.err.println("No se pudo escribir el archivo " + ruta);
             return false;

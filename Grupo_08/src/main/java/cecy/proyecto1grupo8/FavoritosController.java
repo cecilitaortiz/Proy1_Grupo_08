@@ -41,7 +41,7 @@ public class FavoritosController implements Initializable {
 
         
         try {
-            SeleccionaTuAutoController.LlenarDatos(hb, App.crearArrayList("favoritos.txt"), fav);
+            SeleccionaTuAutoController.LlenarDatos(hb, App.crearArrayList("autos.txt"), fav);
         } catch (FileNotFoundException ex) {
         }
         btnRegresar.setOnMouseClicked(new EventHandler<MouseEvent>() {

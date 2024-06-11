@@ -14,4 +14,5 @@ hatchback,Citroen,C3,rojo,30000,14000,2020,citroen_c3.jpg,citroen_c3.txt
 camioneta,Kia,Sportage,blanco,55000,27000,2017,kia_sportage.jpg,kia_sportage.txt
 sedan,Peugeot,308,gris,42000,21000,2019,peugeot_308.jpg,peugeot_308.txt
 hatchback,Renault,Clio,azul,28000,13000,2020,renault_clio.jpg,renault_clio.txt
-asd, asd, asd, asd, 123, 123, 123, auto.png, asdasd
+a,c,s,a,2,3,1,auto.png,as
+asd,asd,asd,asd,3,4,2,auto.png,asdasd

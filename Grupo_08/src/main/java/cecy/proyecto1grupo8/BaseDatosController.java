@@ -80,8 +80,8 @@ public class BaseDatosController implements Initializable {
                 // ex.printStackTrace();
             }
         });
-
-        btnAdd.setOnAction(e -> {
+        
+        btnAdd.setOnMouseClicked(e -> {
             try {
                 CarController.selected = null;
                 App.setRoot("car");
@@ -90,7 +90,7 @@ public class BaseDatosController implements Initializable {
             }
         });
 
-        btnEdit.setOnAction(e -> {
+        btnEdit.setOnMouseClicked(e -> {
             try {
                 Auto a = tblCar.getSelectionModel().getSelectedItem();
                 String[] datosSeleccionados = {a.getTipo(), a.getMarca(), a.getModelo(), a.getColor(),
@@ -103,7 +103,7 @@ public class BaseDatosController implements Initializable {
             }
         });
 
-        btnDelete.setOnAction(e -> {
+        btnDelete.setOnMouseClicked(e -> {
             Auto a = tblCar.getSelectionModel().getSelectedItem();
             String[] datosSeleccionados = {a.getTipo(), a.getMarca(), a.getModelo(), a.getColor(),
                 String.valueOf(a.getKilometraje()), String.valueOf(a.getPrecio()), String.valueOf(a.getAnio()),
@@ -113,7 +113,7 @@ public class BaseDatosController implements Initializable {
             List<String> lineas = Fichero.leerArchivo(App.pathArchivos+"autos.txt");
 
             // Eliminar línea
-            lineas = Fichero.eliminarLinea(lineas, String.join(", ", datosSeleccionados));
+            lineas = Fichero.eliminarLinea(lineas, String.join(",", datosSeleccionados));
 
             // Escribir archivo
             Fichero.escribirArchivo(App.pathArchivos+"autos.txt", lineas);
