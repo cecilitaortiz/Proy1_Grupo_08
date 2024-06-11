@@ -46,7 +46,7 @@ public class SeleccionaTuAutoController implements Initializable {
 
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            LlenarDatos(hb, App.crearArrayList("autos.txt"));
+            LlenarDatos(hb, App.crearArrayList("autos.txt"), datosBusqueda);
         } catch (FileNotFoundException ex) {
         }
     }
@@ -96,20 +96,25 @@ public class SeleccionaTuAutoController implements Initializable {
     }
 
     @FXML
-    public static void LlenarDatos(HBox hbox, ArrayListAuto<Auto> ar) throws FileNotFoundException {
+    public static void LlenarDatos(HBox hbox, ArrayListAuto<Auto> ar, String[] datos) throws FileNotFoundException {
         VBox vb = new VBox();
         vb.prefWidth(150);
         vb.prefHeight(300);
         vb.setSpacing(15);
         ArrayListAuto<Auto> autosBusqueda = new ArrayListAuto<>();
-        for (Auto a : ar) {
-            if (datosBusqueda[0].equals(a.getMarca())
-                    && datosBusqueda[1].equals(a.getModelo())
-                    && Integer.parseInt(datosBusqueda[2]) <= a.getKilometraje()
-                    && Integer.parseInt(datosBusqueda[3]) >= a.getKilometraje()
-                    && Double.parseDouble(datosBusqueda[4]) <= a.getPrecio()
-                    && Double.parseDouble(datosBusqueda[5]) >= a.getPrecio()) {
+        if (datos.length == 1) {
+            for (Auto a : ar)
                 autosBusqueda.add(a);
+        } else {
+            for (Auto a : ar) {
+                if (datos[0].equals(a.getMarca())
+                        && datos[1].equals(a.getModelo())
+                        && Integer.parseInt(datos[2]) <= a.getKilometraje()
+                        && Integer.parseInt(datos[3]) >= a.getKilometraje()
+                        && Double.parseDouble(datos[4]) <= a.getPrecio()
+                        && Double.parseDouble(datos[5]) >= a.getPrecio()) {
+                    autosBusqueda.add(a);
+                }
             }
         }
 

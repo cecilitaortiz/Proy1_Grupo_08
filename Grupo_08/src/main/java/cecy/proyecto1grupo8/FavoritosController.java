@@ -28,14 +28,18 @@ public class FavoritosController implements Initializable {
     @FXML
     private HBox hb;
 
+    public static String[] fav = { "Favorito" };
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+
+        System.out.println(fav.length == 1);
         try {
-            SeleccionaTuAutoController.LlenarDatos(hb,App.crearArrayList("favoritos.txt"));
+            SeleccionaTuAutoController.LlenarDatos(hb, App.crearArrayList("favoritos.txt"), fav);
         } catch (FileNotFoundException ex) {
         }
         btnRegresar.setOnMouseClicked(new EventHandler<MouseEvent>() {
