@@ -57,10 +57,11 @@ public class App extends Application {
                 );
                 autos.add(auto);
             }
+            br.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        
         return autos;
     }
 
