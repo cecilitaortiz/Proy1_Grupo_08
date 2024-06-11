@@ -23,10 +23,15 @@
             <Font name="System Bold" size="19.0" />
          </font>
       </Button>
-      <Label layoutX="10.0" layoutY="6.0" text="Selecciona un auto para ver su descripcion." textFill="#b74113">
+      <Label fx:id="lbltitulo" layoutX="10.0" layoutY="6.0" text="Selecciona un auto para ver su descripcion." textFill="#b74113">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
+      <Button fx:id="btnfav" layoutX="419.0" layoutY="344.0" mnemonicParsing="false" onAction="#marcarFavorito" prefHeight="42.0" style="-fx-background-color: #ffffff; -fx-border-color: #b74113;" text="Marcar Favorito" textFill="#faa632">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

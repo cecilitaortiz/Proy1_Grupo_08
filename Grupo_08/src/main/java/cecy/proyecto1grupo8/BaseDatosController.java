@@ -57,6 +57,7 @@ public class BaseDatosController implements Initializable {
     @FXML
     private TableColumn<Auto, Integer> idAnio;
     public static String[] autoSelected;
+    public static ArrayListAuto<Auto> autos=App.crearArrayList("autos.txt");
 
     /**
      * Initializes the controller class.
@@ -66,10 +67,8 @@ public class BaseDatosController implements Initializable {
         // TODO
 
         this.SetButtons();
-
-        ArrayListAuto<Auto> autos;
-        autos = App.crearArrayList("autos.txt");
-        cargarAutos(autos);
+        tblCar.getItems().clear();
+        cargarAutos(App.crearArrayList("autos.txt"));
 
     }
 
@@ -106,7 +105,6 @@ public class BaseDatosController implements Initializable {
 
         btnDelete.setOnMouseClicked(e -> {
             Auto selected = tblCar.getSelectionModel().getSelectedItem();
-            ArrayListAuto<Auto> autos = App.crearArrayList("autos.txt");
             autos.removeElement(selected);
             List<String> lineas = new LinkedList<>();
             
@@ -123,6 +121,7 @@ public class BaseDatosController implements Initializable {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+            cargarAutos(App.crearArrayList("autos.txt"));
         });
 
     }

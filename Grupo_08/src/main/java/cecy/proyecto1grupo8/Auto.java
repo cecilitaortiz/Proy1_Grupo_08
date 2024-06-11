@@ -4,6 +4,8 @@
  */
 package cecy.proyecto1grupo8;
 
+import java.util.Objects;
+
 /**
  *
  * @author Dario Anchundia Cobo
@@ -104,7 +106,80 @@ public class Auto {
     }
 
     @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Auto other = (Auto) obj;
+        if (Double.doubleToLongBits(this.precio) != Double.doubleToLongBits(other.precio)) {
+            return false;
+        }
+        if (this.anio != other.anio) {
+            return false;
+        }
+        if (!Objects.equals(this.tipo, other.tipo)) {
+            return false;
+        }
+        if (!Objects.equals(this.marca, other.marca)) {
+            return false;
+        }
+        if (!Objects.equals(this.modelo, other.modelo)) {
+            return false;
+        }
+        if (!Objects.equals(this.color, other.color)) {
+            return false;
+        }
+        if (!Objects.equals(this.imagen, other.imagen)) {
+            return false;
+        }
+        if (!Objects.equals(this.descripcion, other.descripcion)) {
+            return false;
+        }
+        return Objects.equals(this.kilometraje, other.kilometraje);
+    }
+
+    
+    
+    @Override
     public String toString() {
         return "Auto{" + "tipo=" + tipo + ", marca=" + marca + ", modelo=" + modelo + ", color=" + color + ", kilometraje=" + kilometraje + ", precio=" + precio + ", anio=" + anio + ", imagen=" + imagen + ", descripcion=" + descripcion + '}';
+    }
+    
+    public String toWrite() {
+        return tipo + "," + 
+               marca + "," + 
+               modelo + "," + 
+               color + "," + 
+               kilometraje + "," + 
+               precio + "," + 
+               anio + "," + 
+               imagen + "," + 
+               descripcion;
+    }
+    public static Auto toObject(String s) {
+        String[] attributes = s.split(",");
+        return new Auto(
+            attributes[0],
+            attributes[1],
+            attributes[2],
+            attributes[3],
+            Integer.parseInt(attributes[4]),
+            Double.parseDouble(attributes[5]),
+            Integer.parseInt(attributes[6]),
+            attributes[7],
+            attributes[8]
+        );
     }
 }

@@ -13,7 +13,7 @@
          <content>
             <AnchorPane maxHeight="300.0" minHeight="0.0" minWidth="0.0">
                <children>
-                  <HBox fx:id="hb" fillHeight="false" spacing="20.0" style="-fx-background-color: white;" />
+                  <HBox fx:id="contenedor" fillHeight="false" spacing="20.0" style="-fx-background-color: white;" />
                </children>
             </AnchorPane>
          </content>
@@ -28,6 +28,10 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
+      <Button fx:id="btnFavorito" layoutX="374.0" layoutY="344.0" mnemonicParsing="false" onAction="#quitarFavorito" prefHeight="42.0" style="-fx-background-color: #ffffff; -fx-border-color: #b74113;" text="Eliminar de Favoritos" textFill="#faa632">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
-

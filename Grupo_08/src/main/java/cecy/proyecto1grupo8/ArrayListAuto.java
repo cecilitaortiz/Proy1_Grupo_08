@@ -72,7 +72,13 @@ public class ArrayListAuto<E> implements List<E>{
         }
         return false;
     }
-    
+        
+    public boolean contiene(E e){
+        for(E e1:arr){
+            if(e1.equals(e)) return true;
+        }
+        return false;
+    }
     
     @Override
     public int size() {

@@ -34,6 +34,19 @@ public class Fichero {
 
         return true;
     }
+    
+    public static boolean sobreEscribir(String ruta, String linea) {
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(ruta, false))) {
+            writer.write(linea+"\n");
+        } catch (IOException ex) {
+            System.err.println("No se pudo escribir el archivo " + ruta);
+            return false;
+        }
+
+        return true;
+    }
+    
 public static List<String> leerArchivo(String rutaArchivo) throws IOException {
         List<String> lineas = new LinkedList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {

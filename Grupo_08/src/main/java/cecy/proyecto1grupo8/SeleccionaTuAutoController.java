@@ -1,6 +1,5 @@
 package cecy.proyecto1grupo8;
 
-import javafx.event.EventHandler;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -10,8 +9,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -22,7 +23,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 /**
@@ -36,8 +39,13 @@ public class SeleccionaTuAutoController implements Initializable {
     private Button btnatras;
     @FXML
     private HBox hb;
+    @FXML
+    private Label lbltitulo;
 
     public static String[] datosBusqueda;
+    public static ArrayListAuto<Auto> autos=App.crearArrayList("autos.txt");
+    public static ArrayListAuto<Auto> favoritos=App.crearArrayList("favoritos.txt");
+    public static AnchorPane seleccionado;
 
     /**
      * Initializes the controller class.
@@ -46,7 +54,7 @@ public class SeleccionaTuAutoController implements Initializable {
 
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            LlenarDatos(hb, App.crearArrayList("autos.txt"), datosBusqueda);
+            LlenarDatos(hb, autos, datosBusqueda);
         } catch (FileNotFoundException ex) {
         }
     }
@@ -60,10 +68,11 @@ public class SeleccionaTuAutoController implements Initializable {
         }
 
     }
-
+    
+   
     @FXML
     public static void mostrar(MouseEvent event) {
-        for (Auto a : App.crearArrayList("autos.txt")) {
+        for (Auto a : autos) {
             if (CompararAutoSeleccionado(a, (AnchorPane) event.getSource())) {
                 AnchorPane ap = new AnchorPane();
                 StringBuilder contenido = new StringBuilder();
@@ -97,6 +106,7 @@ public class SeleccionaTuAutoController implements Initializable {
 
     @FXML
     public static void LlenarDatos(HBox hbox, ArrayListAuto<Auto> ar, String[] datos) throws FileNotFoundException {
+        
         VBox vb = new VBox();
         vb.prefWidth(150);
         vb.prefHeight(300);
@@ -183,6 +193,8 @@ public class SeleccionaTuAutoController implements Initializable {
             @Override
             public void handle(MouseEvent e) {
                 mostrar(e);
+                ap.setStyle("-fx-border-color: black; -fx-border-width: 5px;");
+                seleccionado=ap;
             }
         });
 
@@ -204,4 +216,65 @@ public class SeleccionaTuAutoController implements Initializable {
                 && a.getPrecio() == Double.parseDouble(lblprecio.getText().substring(2));
 
     }
+    
+    @FXML
+    public void marcarFavorito(ActionEvent event) {
+        if(seleccionado.equals(null)){
+            lbltitulo.setText("Debes seleccionar un auto.");
+        }else{
+            Stage stage = new Stage();
+            AnchorPane rootmensaje=new AnchorPane();
+            VBox vbh=new VBox();
+            vbh.setSpacing(60);
+            vbh.setPadding(new Insets(100, 20, 0, 20));
+            Label lbl=new Label();
+            lbl.setText("¿Está seguro de añadir este auto a favoritos?");
+            lbl.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+            lbl.setTextFill(Color.web("#b74113"));
+            HBox hb=new HBox();
+            hb.setPrefSize(150,200);
+            hb.setSpacing(150);
+            Button btnaceptar=new Button();
+            btnaceptar.setPrefSize(100, 40);
+            btnaceptar.setStyle("-fx-background-color: #ffffff; -fx-border-color: #b74113;");
+            btnaceptar.setText("Aceptar");
+            btnaceptar.setTextFill(Color.web("#faa632"));
+            btnaceptar.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+            Button btncancelarm=new Button();
+            btncancelarm.setPrefSize(100, 40);
+            btncancelarm.setStyle("-fx-background-color: #ffffff; -fx-border-color: #b74113;");
+            btncancelarm.setText("Cancelar");
+            btncancelarm.setTextFill(Color.web("#faa632"));
+            btncancelarm.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+            Scene scene = new Scene(rootmensaje,475,300);
+            rootmensaje.getChildren().add(vbh);
+            vbh.getChildren().add(lbl);
+            vbh.getChildren().add(hb);
+            hb.getChildren().add(btnaceptar);
+            hb.getChildren().add(btncancelarm);
+            vbh.setMargin(hb,new Insets(0,50,0,50));
+            stage.setScene(scene);
+            stage.show();
+            btnaceptar.setOnAction(new EventHandler<ActionEvent>(){
+                @Override
+                public void handle(ActionEvent event){
+                    stage.close();
+                    Stage s=(Stage)((Button) event.getSource()).getScene().getWindow();
+                    s.close();
+                    for(Auto a:autos){
+                        if(CompararAutoSeleccionado(a, seleccionado) && !favoritos.contiene(a)){
+                            Fichero.escribir(App.pathArchivos+"favoritos.txt",a.toWrite());
+                        }
+                    }
+                }
+            });
+            btncancelarm.setOnAction(new EventHandler<ActionEvent>(){
+                @Override
+                public void handle(ActionEvent event){
+                    stage.close();
+                }
+            });
+        }
+
+    }    
 }
