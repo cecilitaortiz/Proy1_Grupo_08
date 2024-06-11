@@ -124,9 +124,14 @@ public class CarController implements Initializable {
             lblConfirma.setText("Ingreso con éxito");
             
         });
+        
+        btnEdit.setOnAction(e -> {
+            
+        });
     }
 
     ;
+    
         
     boolean Action(String title, String message) {
         boolean result = false;
